@@ -1,244 +1,561 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>React.js Tough Interview — Master Consolidated Topic List</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚛️%3C/text%3E%3C/svg%3E">
-<style>
-:root{--bg:#f6f7fb;--surface:#fff;--ink:#1b2033;--muted:#5d647c;--line:#e3e6f0;--accent:#4f46e5;--accent2:#06b6d4;--accent-soft:#eceafd;--code-bg:#f0f1f8;--code-ink:#a3157a;--shadow:0 1px 2px rgba(20,24,50,.05),0 6px 20px rgba(20,24,50,.06);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1120;--surface:#171b30;--ink:#e8eaf6;--muted:#9aa1bd;--line:#262b48;--accent:#8b8cff;--accent2:#22d3ee;--accent-soft:#232859;--code-bg:#202545;--code-ink:#ff9fd8;--shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25)}}
-:root[data-theme="dark"]{--bg:#0e1120;--surface:#171b30;--ink:#e8eaf6;--muted:#9aa1bd;--line:#262b48;--accent:#8b8cff;--accent2:#22d3ee;--accent-soft:#232859;--code-bg:#202545;--code-ink:#ff9fd8;--shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25)}
-*,*::before,*::after{box-sizing:inherit}
-html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 84px)}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
-.layout{display:grid;grid-template-columns:292px minmax(0,1fr);min-height:100vh}
-aside{position:sticky;top:0;height:100vh;overflow:auto;padding:22px 14px 28px;border-right:1px solid var(--line);background:var(--surface)}
-.brand{display:flex;gap:10px;align-items:center;padding:0 8px 16px;font-weight:700;letter-spacing:-.01em}
-.brand i{font-style:normal;display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:18px}
-.brand small{display:block;font-weight:500;color:var(--muted);font-size:12px}
-aside nav a{display:flex;gap:10px;align-items:baseline;padding:7px 10px;border-radius:9px;color:var(--muted);text-decoration:none;font-size:13.5px;line-height:1.35}
-aside nav a:hover{background:var(--accent-soft);color:var(--ink)}
-aside nav a.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
-.nn{font-variant-numeric:tabular-nums;font-size:11.5px;opacity:.7;min-width:20px}
-main{padding:28px clamp(16px,4vw,56px) 80px;max-width:1040px;width:100%}
-.hero{border-radius:22px;padding:34px clamp(20px,4vw,40px);color:#fff;background:radial-gradient(1200px 400px at 90% -20%,rgba(255,255,255,.22),transparent 60%),linear-gradient(135deg,#4f46e5,#0ea5e9 70%,#06b6d4);box-shadow:var(--shadow)}
-.hero h1{margin:0 0 8px;font-size:clamp(24px,4vw,36px);line-height:1.15;letter-spacing:-.02em}
-.hero p{margin:0;opacity:.92;max-width:60ch}
-.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.stat{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);padding:8px 14px;border-radius:12px;font-size:13px;backdrop-filter:blur(6px)}
-.stat b{font-size:18px;margin-right:4px}
-.progress{margin-top:18px}
-.bar{height:8px;border-radius:99px;background:rgba(255,255,255,.25);overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:#fff;border-radius:99px;transition:width .3s}
-.plabel{font-size:12.5px;margin-top:6px;opacity:.95}
-.tools{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:18px -8px 14px;padding:10px 8px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);padding-top:calc(env(safe-area-inset-top,0px) + 10px)}
-.search{flex:1 1 220px;position:relative}
-.search input{width:100%;padding:11px 14px 11px 38px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:14.5px;outline:none}
-.search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
-.search::before{content:"⌕";position:absolute;left:13px;top:50%;transform:translateY(-52%);color:var(--muted);font-size:18px}
-button{font:inherit;font-size:13.5px;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
-button:hover{border-color:var(--accent);color:var(--accent)}
-.menu{display:none}
-.sec{background:var(--surface);border:1px solid var(--line);border-radius:18px;margin:0 0 14px;box-shadow:var(--shadow);overflow:hidden}
-.sec summary{list-style:none;display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;user-select:none}
-.sec summary::-webkit-details-marker{display:none}
-.badge{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--accent-soft);color:var(--accent);font-weight:700;font-size:14px;font-variant-numeric:tabular-nums}
-.st{flex:1;font-weight:650;font-size:17px;line-height:1.3;letter-spacing:-.01em}
-.cnt{flex:none;font-size:12px;color:var(--muted);background:var(--bg);border:1px solid var(--line);padding:3px 10px;border-radius:99px;font-variant-numeric:tabular-nums}
-.sec.done .cnt{background:var(--accent);color:#fff;border-color:var(--accent)}
-.chev{flex:none;width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s;margin:0 4px 3px}
-.sec[open] .chev{transform:rotate(-135deg);margin-bottom:-3px}
-.inner{padding:2px 20px 18px;border-top:1px solid var(--line)}
-.grp h3{margin:18px 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);font-weight:700}
-.grp ul{list-style:none;margin:0;padding:0}
-.grp li{border-bottom:1px dashed var(--line)}
-.grp li:last-child{border-bottom:0}
-.grp label{display:flex;gap:12px;align-items:flex-start;padding:9px 4px;cursor:pointer;font-size:15px}
-.grp li:hover{background:color-mix(in srgb,var(--accent-soft) 45%,transparent)}
-input[type=checkbox]{position:absolute;opacity:0;pointer-events:none}
-.box{flex:none;width:18px;height:18px;margin-top:3px;border:2px solid var(--muted);border-radius:6px;display:grid;place-items:center;transition:.15s}
-input:focus-visible+.box{box-shadow:0 0 0 3px var(--accent-soft);border-color:var(--accent)}
-input:checked+.box{background:var(--accent);border-color:var(--accent)}
-input:checked+.box::after{content:"";width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
-input:checked~.tx{color:var(--muted);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--muted) 50%,transparent)}
-code{font:.86em ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;background:var(--code-bg);color:var(--code-ink);padding:2px 6px;border-radius:6px;word-break:break-word}
-.tx{min-width:0;overflow-wrap:anywhere}
-.hide{display:none!important}
-.note{margin-top:22px;padding:16px 18px;border-radius:14px;background:var(--accent-soft);border:1px solid var(--line);color:var(--muted);font-size:14px}
-.note b{color:var(--accent)}
-.empty{display:none;text-align:center;color:var(--muted);padding:40px 0}
-mark{background:#fde68a;color:#1b2033;border-radius:3px;padding:0 1px}
-.totop{position:fixed;right:18px;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);width:44px;height:44px;border-radius:50%;padding:0;box-shadow:var(--shadow);display:none}
-@media (max-width:900px){
- .layout{grid-template-columns:1fr}
- aside{position:fixed;inset:0 auto 0 0;width:300px;max-width:86vw;z-index:20;height:100%;transform:translateX(-102%);transition:transform .25s;box-shadow:var(--shadow);padding-top:calc(env(safe-area-inset-top,0px) + 22px)}
- aside.open{transform:none}
- .menu{display:inline-block}
- .st{font-size:15.5px}
- .badge{width:34px;height:34px;font-size:13px}
-}
-@media print{aside,.tools,.totop{display:none!important}.layout{display:block}body{background:#fff;color:#000}.sec{box-shadow:none;break-inside:avoid-page}.hero{background:#4f46e5!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
-</style>
-</head>
-<body>
-<div class="layout">
-<aside id="aside">
- <div class="brand"><i>⚛</i><div>React Interview<small>Master roadmap</small></div></div>
- <nav id="nav">
-<a href="#s1" data-s="s1"><span class="nn">01</span><span class="nt">JavaScript &amp; Browser Foundations (Prerequisite Layer)</span></a>
-<a href="#s2" data-s="s2"><span class="nn">02</span><span class="nt">React Core Fundamentals</span></a>
-<a href="#s3" data-s="s3"><span class="nn">03</span><span class="nt">Fiber Architecture, Reconciliation &amp; Rendering Internals</span></a>
-<a href="#s4" data-s="s4"><span class="nn">04</span><span class="nt">Hooks — Full Depth</span></a>
-<a href="#s5" data-s="s5"><span class="nn">05</span><span class="nt">Component Design Patterns &amp; Composition</span></a>
-<a href="#s6" data-s="s6"><span class="nn">06</span><span class="nt">State Management</span></a>
-<a href="#s7" data-s="s7"><span class="nn">07</span><span class="nt">Data Fetching &amp; Server State</span></a>
-<a href="#s8" data-s="s8"><span class="nn">08</span><span class="nt">Performance Optimization</span></a>
-<a href="#s9" data-s="s9"><span class="nn">09</span><span class="nt">Streaming Data, Real-Time &amp; Large File Handling (Advanced)</span></a>
-<a href="#s10" data-s="s10"><span class="nn">10</span><span class="nt">Rendering Strategies: CSR / SSR / SSG / ISR / RSC</span></a>
-<a href="#s11" data-s="s11"><span class="nn">11</span><span class="nt">Routing</span></a>
-<a href="#s12" data-s="s12"><span class="nn">12</span><span class="nt">Forms</span></a>
-<a href="#s13" data-s="s13"><span class="nn">13</span><span class="nt">Testing</span></a>
-<a href="#s14" data-s="s14"><span class="nn">14</span><span class="nt">TypeScript (General + React-Specific)</span></a>
-<a href="#s15" data-s="s15"><span class="nn">15</span><span class="nt">Security</span></a>
-<a href="#s16" data-s="s16"><span class="nn">16</span><span class="nt">Build Tools, Bundling &amp; Compilation</span></a>
-<a href="#s17" data-s="s17"><span class="nn">17</span><span class="nt">Environment Configuration</span></a>
-<a href="#s18" data-s="s18"><span class="nn">18</span><span class="nt">Deployment &amp; Hosting Infrastructure</span></a>
-<a href="#s19" data-s="s19"><span class="nn">19</span><span class="nt">Monorepo Architecture</span></a>
-<a href="#s20" data-s="s20"><span class="nn">20</span><span class="nt">Micro-Frontend Architecture</span></a>
-<a href="#s21" data-s="s21"><span class="nn">21</span><span class="nt">Accessibility (a11y)</span></a>
-<a href="#s22" data-s="s22"><span class="nn">22</span><span class="nt">Architecture, System Design &amp; Org-Level Concerns</span></a>
-<a href="#s23" data-s="s23"><span class="nn">23</span><span class="nt">Compiled &quot;Elite&quot; System-Design &amp; Mock-Scenario Prompts</span></a>
- </nav>
-</aside>
-<main>
- <header class="hero">
-  <h1>React.js Tough Interview — Master Consolidated Topic List</h1>
-  <p>Work through every topic, tick it off as you master it, and your progress is saved in this browser.</p>
-  <div class="stats"><div class="stat"><b>23</b>sections</div><div class="stat"><b>308</b>topics</div><div class="stat"><b id="doneN">0</b>mastered</div></div>
-  <div class="progress"><div class="bar"><i id="barfill"></i></div><div class="plabel" id="plabel">0% complete</div></div>
- </header>
- <div class="tools">
-  <button class="menu" id="menu" aria-label="Open contents">☰ Contents</button>
-  <div class="search"><input id="q" type="search" placeholder="Search topics… (press / to focus)" aria-label="Search topics" autocomplete="off"></div>
-  <button id="expand">Expand all</button><button id="collapse">Collapse all</button><button id="theme" aria-label="Toggle theme">◐</button><button id="reset">Reset progress</button>
- </div>
- <div id="content">
-<details class="sec" id="s1" open><summary><span class="badge">01</span><span class="st">JavaScript &amp; Browser Foundations (Prerequisite Layer)</span><span class="cnt" data-total="11"><b>0</b>/11</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="1-0-0"><span class="box"></span><span class="tx">Closures, scope, hoisting, <code>this</code> binding — and how closures cause stale closures/memory leaks in hooks &amp; Redux listeners</span></label></li><li><label><input type="checkbox" data-k="1-0-1"><span class="box"></span><span class="tx">Prototypal inheritance, <code>Object.create</code></span></label></li><li><label><input type="checkbox" data-k="1-0-2"><span class="box"></span><span class="tx">Event loop: microtasks vs macrotasks; why React batching/state updates coordinate with the paint loop vs <code>setTimeout</code>/fetch macrotasks</span></label></li><li><label><input type="checkbox" data-k="1-0-3"><span class="box"></span><span class="tx">Promises, async/await, generators (<code>function*</code>, <code>yield</code>, iterator <code>.next()</code> — foundation of Redux-Saga)</span></label></li><li><label><input type="checkbox" data-k="1-0-4"><span class="box"></span><span class="tx">Debounce/throttle implementation from scratch</span></label></li><li><label><input type="checkbox" data-k="1-0-5"><span class="box"></span><span class="tx">ES6+: destructuring, spread/rest, optional chaining, nullish coalescing, Map/Set, WeakMap/WeakRef</span></label></li><li><label><input type="checkbox" data-k="1-0-6"><span class="box"></span><span class="tx">Immutability patterns, structural sharing, shallow vs deep equality</span></label></li><li><label><input type="checkbox" data-k="1-0-7"><span class="box"></span><span class="tx">V8 engine internals: hidden classes &amp; inline caches, garbage collection / GC thrashing, memory leak archetypes (detached DOM, uncleared listeners, stale closures, unbounded caches)</span></label></li><li><label><input type="checkbox" data-k="1-0-8"><span class="box"></span><span class="tx">Browser rendering pipeline: parse → style → layout → paint → composite</span></label></li><li><label><input type="checkbox" data-k="1-0-9"><span class="box"></span><span class="tx">Browser storage comparison: cookies, localStorage, sessionStorage, IndexedDB, Cache API</span></label></li><li><label><input type="checkbox" data-k="1-0-10"><span class="box"></span><span class="tx">Web Components interop with React</span></label></li></ul></div></div></details>
-<details class="sec" id="s2" open><summary><span class="badge">02</span><span class="st">React Core Fundamentals</span><span class="cnt" data-total="7"><b>0</b>/7</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="2-0-0"><span class="box"></span><span class="tx">JSX compilation (Babel → <code>React.createElement</code> → jsx-runtime)</span></label></li><li><label><input type="checkbox" data-k="2-0-1"><span class="box"></span><span class="tx">Elements vs Components vs Instances</span></label></li><li><label><input type="checkbox" data-k="2-0-2"><span class="box"></span><span class="tx">Functional vs Class components</span></label></li><li><label><input type="checkbox" data-k="2-0-3"><span class="box"></span><span class="tx">Props, state, controlled vs uncontrolled components</span></label></li><li><label><input type="checkbox" data-k="2-0-4"><span class="box"></span><span class="tx">Conditional/list rendering; <code>key</code> prop semantics (why index-as-key breaks reconciliation)</span></label></li><li><label><input type="checkbox" data-k="2-0-5"><span class="box"></span><span class="tx">Fragments, Portals (DOM decoupling vs event bubbling preservation)</span></label></li><li><label><input type="checkbox" data-k="2-0-6"><span class="box"></span><span class="tx">Synthetic Event System: root-container event delegation, historical pooling, perf vs native DOM events</span></label></li></ul></div></div></details>
-<details class="sec" id="s3" open><summary><span class="badge">03</span><span class="st">Fiber Architecture, Reconciliation &amp; Rendering Internals</span><span class="cnt" data-total="14"><b>0</b>/14</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="3-0-0"><span class="box"></span><span class="tx">Fiber nodes, work-in-progress tree, double buffering (current vs WIP tree)</span></label></li><li><label><input type="checkbox" data-k="3-0-1"><span class="box"></span><span class="tx">Work loop: <code>beginWork</code> / <code>completeWork</code>, split/pause/resume</span></label></li><li><label><input type="checkbox" data-k="3-0-2"><span class="box"></span><span class="tx">Reconciliation/diffing heuristics (O(n) vs theoretical O(n³))</span></label></li><li><label><input type="checkbox" data-k="3-0-3"><span class="box"></span><span class="tx">Render phase (pure, interruptible) vs Commit phase (synchronous DOM mutation)</span></label></li><li><label><input type="checkbox" data-k="3-0-4"><span class="box"></span><span class="tx">The Scheduler package: polyfilling <code>requestIdleCallback</code> via <code>MessageChannel</code>/<code>requestAnimationFrame</code></span></label></li><li><label><input type="checkbox" data-k="3-0-5"><span class="box"></span><span class="tx">Priority lanes / task prioritization (NoPriority, Immediate, UserBlocking, Normal, Idle), expiration &amp; starvation prevention</span></label></li><li><label><input type="checkbox" data-k="3-0-6"><span class="box"></span><span class="tx">Yielding to main thread (~5ms slicing) for responsiveness</span></label></li><li><label><input type="checkbox" data-k="3-0-7"><span class="box"></span><span class="tx">Batching: legacy vs React 18 automatic batching</span></label></li><li><label><input type="checkbox" data-k="3-0-8"><span class="box"></span><span class="tx">Concurrent rendering, interruptible rendering, time-slicing</span></label></li><li><label><input type="checkbox" data-k="3-0-9"><span class="box"></span><span class="tx"><code>React.memo</code>, <code>PureComponent</code>, shallow comparison pitfalls</span></label></li><li><label><input type="checkbox" data-k="3-0-10"><span class="box"></span><span class="tx">Bailing out of updates — exact conditions for early bailout</span></label></li><li><label><input type="checkbox" data-k="3-0-11"><span class="box"></span><span class="tx">Suspense internals (throwing promises), Suspense boundaries &amp; commit-phase interaction</span></label></li><li><label><input type="checkbox" data-k="3-0-12"><span class="box"></span><span class="tx">Error boundaries — internals (<code>componentDidCatch</code>, <code>getDerivedStateFromError</code>)</span></label></li><li><label><input type="checkbox" data-k="3-0-13"><span class="box"></span><span class="tx">Source-level <code>react-reconciler</code> understanding, lanes model (staff/principal level)</span></label></li></ul></div></div></details>
-<details class="sec" id="s4" open><summary><span class="badge">04</span><span class="st">Hooks — Full Depth</span><span class="cnt" data-total="17"><b>0</b>/17</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><h3>Core</h3><ul><li><label><input type="checkbox" data-k="4-1-0"><span class="box"></span><span class="tx"><code>useState</code> — batching, functional updates, lazy initialization</span></label></li><li><label><input type="checkbox" data-k="4-1-1"><span class="box"></span><span class="tx"><code>useReducer</code> — reducer patterns, when to prefer over <code>useState</code></span></label></li><li><label><input type="checkbox" data-k="4-1-2"><span class="box"></span><span class="tx"><code>useEffect</code> — async-after-paint execution, cleanup, dependency-array pitfalls, stale closures</span></label></li><li><label><input type="checkbox" data-k="4-1-3"><span class="box"></span><span class="tx"><code>useLayoutEffect</code> — sync pre-paint execution, layout measurement, flicker prevention</span></label></li><li><label><input type="checkbox" data-k="4-1-4"><span class="box"></span><span class="tx"><code>useInsertionEffect</code> — pre-DOM-mutation timing (CSS-in-JS style injection)</span></label></li><li><label><input type="checkbox" data-k="4-1-5"><span class="box"></span><span class="tx"><code>useMemo</code> / <code>useCallback</code> — genuine use cases vs premature optimization; no guaranteed cache retention</span></label></li><li><label><input type="checkbox" data-k="4-1-6"><span class="box"></span><span class="tx"><code>useRef</code> — mutable refs, DOM refs, avoiding re-renders, closures over stale state</span></label></li><li><label><input type="checkbox" data-k="4-1-7"><span class="box"></span><span class="tx"><code>useContext</code> — re-render cascade traps, selector/splitting mitigation</span></label></li><li><label><input type="checkbox" data-k="4-1-8"><span class="box"></span><span class="tx"><code>useImperativeHandle</code> + <code>forwardRef</code> — exposing restricted imperative APIs</span></label></li><li><label><input type="checkbox" data-k="4-1-9"><span class="box"></span><span class="tx"><code>useId</code> — stable, collision-free IDs consistent across SSR/hydration</span></label></li><li><label><input type="checkbox" data-k="4-1-10"><span class="box"></span><span class="tx"><code>useSyncExternalStore</code> — solving "tearing" when reading external mutable stores (Redux/Zustand/history API)</span></label></li><li><label><input type="checkbox" data-k="4-1-11"><span class="box"></span><span class="tx"><code>useTransition</code> / <code>useDeferredValue</code> — concurrent, non-blocking updates</span></label></li><li><label><input type="checkbox" data-k="4-1-12"><span class="box"></span><span class="tx"><code>useOptimistic</code> (React 19) — optimistic UI with automatic rollback</span></label></li><li><label><input type="checkbox" data-k="4-1-13"><span class="box"></span><span class="tx"><code>useActionState</code> (formerly <code>useFormState</code>) / <code>useFormStatus</code> — native async form state, pending/error tracking</span></label></li><li><label><input type="checkbox" data-k="4-1-14"><span class="box"></span><span class="tx">Custom hooks — design, composition, race-condition handling in data-fetching hooks</span></label></li><li><label><input type="checkbox" data-k="4-1-15"><span class="box"></span><span class="tx">Rules of Hooks — <em>why</em> they exist: hook linked-list architecture on the Fiber node (can't be in loops/conditionals)</span></label></li><li><label><input type="checkbox" data-k="4-1-16"><span class="box"></span><span class="tx">Implementing a simplified <code>useState</code>/<code>useEffect</code> yourself (fiber-lite understanding)</span></label></li></ul></div></div></details>
-<details class="sec" id="s5" open><summary><span class="badge">05</span><span class="st">Component Design Patterns &amp; Composition</span><span class="cnt" data-total="8"><b>0</b>/8</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="5-0-0"><span class="box"></span><span class="tx">Higher-Order Components (HOCs) — limitations, why hooks largely replaced them</span></label></li><li><label><input type="checkbox" data-k="5-0-1"><span class="box"></span><span class="tx">Render Props (legacy, still asked)</span></label></li><li><label><input type="checkbox" data-k="5-0-2"><span class="box"></span><span class="tx">Compound Components — Context-driven communication (<code>&lt;Select&gt;&lt;Option/&gt;&lt;/Select&gt;</code>)</span></label></li><li><label><input type="checkbox" data-k="5-0-3"><span class="box"></span><span class="tx">Container/Presentational pattern</span></label></li><li><label><input type="checkbox" data-k="5-0-4"><span class="box"></span><span class="tx">Controlled vs Uncontrolled — dynamic transitions, complex validation</span></label></li><li><label><input type="checkbox" data-k="5-0-5"><span class="box"></span><span class="tx">Custom hook composition patterns</span></label></li><li><label><input type="checkbox" data-k="5-0-6"><span class="box"></span><span class="tx">Atomic design, feature-based folder structure</span></label></li><li><label><input type="checkbox" data-k="5-0-7"><span class="box"></span><span class="tx">Polymorphic components (<code>as</code> prop pattern) — typing challenge</span></label></li></ul></div></div></details>
-<details class="sec" id="s6" open><summary><span class="badge">06</span><span class="st">State Management</span><span class="cnt" data-total="32"><b>0</b>/32</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><h3>Local/Global Decision Making</h3><ul><li><label><input type="checkbox" data-k="6-1-0"><span class="box"></span><span class="tx">Local vs lifted vs Context vs global — staff-level decision matrix</span></label></li><li><label><input type="checkbox" data-k="6-1-1"><span class="box"></span><span class="tx">State colocation principles</span></label></li></ul></div><div class="grp"><h3>Context API</h3><ul><li><label><input type="checkbox" data-k="6-2-0"><span class="box"></span><span class="tx">Performance pitfalls, splitting contexts, selector patterns, memoized context value</span></label></li></ul></div><div class="grp"><h3>Redux — Core</h3><ul><li><label><input type="checkbox" data-k="6-3-0"><span class="box"></span><span class="tx">Three principles, unidirectional flow, <code>createStore</code>(legacy), <code>combineReducers</code></span></label></li><li><label><input type="checkbox" data-k="6-3-1"><span class="box"></span><span class="tx">Pure reducers, immutability without Immer (spread/<code>Object.assign</code>), normalization</span></label></li><li><label><input type="checkbox" data-k="6-3-2"><span class="box"></span><span class="tx">Middleware signature <code>store =&gt; next =&gt; action</code>, custom middleware, execution order, enhancers vs middleware</span></label></li><li><label><input type="checkbox" data-k="6-3-3"><span class="box"></span><span class="tx"><code>connect()</code> (legacy) vs hooks (<code>useSelector</code>, <code>useDispatch</code>, <code>useStore</code>) — re-render behavior, <code>shallowEqual</code></span></label></li><li><label><input type="checkbox" data-k="6-3-4"><span class="box"></span><span class="tx">Selectors &amp; Reselect (<code>createSelector</code>), memoization internals, parametrized selectors</span></label></li></ul></div><div class="grp"><h3>Redux Thunk</h3><ul><li><label><input type="checkbox" data-k="6-4-0"><span class="box"></span><span class="tx">Function-as-action, <code>getState</code> access, chaining, error handling, cancellation limitations, testing thunks</span></label></li></ul></div><div class="grp"><h3>Redux-Saga</h3><ul><li><label><input type="checkbox" data-k="6-5-0"><span class="box"></span><span class="tx">Generator-driven middleware, declarative effects (plain objects, easy mocking)</span></label></li><li><label><input type="checkbox" data-k="6-5-1"><span class="box"></span><span class="tx">Effects: <code>call</code>, <code>put</code>, <code>take</code>, <code>takeEvery</code>, <code>takeLatest</code>, <code>takeLeading</code>, <code>fork</code> vs <code>spawn</code> (attached vs detached), <code>cancel</code>/<code>cancelled</code>, <code>race</code>, <code>all</code>, <code>delay</code></span></label></li><li><label><input type="checkbox" data-k="6-5-2"><span class="box"></span><span class="tx"><code>actionChannel</code> (buffering), <code>eventChannel</code> (WebSockets/timers/geolocation bridge), custom <code>channel</code> (inter-saga comms)</span></label></li><li><label><input type="checkbox" data-k="6-5-3"><span class="box"></span><span class="tx">Root saga composition, watcher/worker pattern, supervisor/global error-boundary patterns</span></label></li><li><label><input type="checkbox" data-k="6-5-4"><span class="box"></span><span class="tx">Saga testing (step-through yielded-effect assertions)</span></label></li><li><label><input type="checkbox" data-k="6-5-5"><span class="box"></span><span class="tx">Real-world: token auth flow (<code>take</code> pull-loop), parallel dashboard loads with error isolation, file-upload progress via <code>eventChannel</code>, search typeahead with <code>race</code> cancellation, WebSocket chat sync, polling engines, exponential-backoff retry engine, offline action queueing</span></label></li></ul></div><div class="grp"><h3>Redux Toolkit (RTK)</h3><ul><li><label><input type="checkbox" data-k="6-6-0"><span class="box"></span><span class="tx"><code>configureStore</code> internals (auto middleware, DevTools, serializability checks)</span></label></li><li><label><input type="checkbox" data-k="6-6-1"><span class="box"></span><span class="tx"><code>createSlice</code>, Immer under the hood (Proxies enabling "mutating" syntax)</span></label></li><li><label><input type="checkbox" data-k="6-6-2"><span class="box"></span><span class="tx"><code>prepare</code> callback for custom payloads</span></label></li><li><label><input type="checkbox" data-k="6-6-3"><span class="box"></span><span class="tx"><code>createReducer</code> (builder vs map notation), <code>createAction</code></span></label></li><li><label><input type="checkbox" data-k="6-6-4"><span class="box"></span><span class="tx"><code>createAsyncThunk</code> lifecycle (pending/fulfilled/rejected), <code>extraReducers</code>, <code>unwrap()</code>, <code>rejectWithValue</code>, <code>condition</code>, AbortController cancellation</span></label></li><li><label><input type="checkbox" data-k="6-6-5"><span class="box"></span><span class="tx"><code>createEntityAdapter</code> — normalized ID-to-record state, CRUD utilities, memoized selectors</span></label></li></ul></div><div class="grp"><h3>RTK Query</h3><ul><li><label><input type="checkbox" data-k="6-7-0"><span class="box"></span><span class="tx"><code>createApi</code>, <code>fetchBaseQuery</code>/custom baseQuery, query vs mutation endpoints, auto-generated hooks</span></label></li><li><label><input type="checkbox" data-k="6-7-1"><span class="box"></span><span class="tx">Cache keys, cache lifetimes (<code>keepUnusedDataFor</code>), tag-based invalidation (<code>providesTags</code>/<code>invalidatesTags</code>)</span></label></li><li><label><input type="checkbox" data-k="6-7-2"><span class="box"></span><span class="tx">Polling, refetch strategies, optimistic updates (<code>onQueryStarted</code> + manual rollback), prefetching (hover/focus/intent)</span></label></li><li><label><input type="checkbox" data-k="6-7-3"><span class="box"></span><span class="tx">Streaming cache updates (<code>onCacheEntryAdded</code> — SSE/WebSockets), <code>injectEndpoints</code> code-splitting</span></label></li><li><label><input type="checkbox" data-k="6-7-4"><span class="box"></span><span class="tx">RTK Query vs React Query/SWR — architectural differences</span></label></li></ul></div><div class="grp"><h3>Other State Libraries</h3><ul><li><label><input type="checkbox" data-k="6-8-0"><span class="box"></span><span class="tx">Zustand, Jotai, Recoil — atomic state models, transient updates</span></label></li><li><label><input type="checkbox" data-k="6-8-1"><span class="box"></span><span class="tx">XState / Finite State Machines — when FSMs beat boolean flags; modeling multi-step wizards/checkout flows</span></label></li></ul></div><div class="grp"><h3>Real-World Redux Use Cases (all levels)</h3><ul><li><label><input type="checkbox" data-k="6-9-0"><span class="box"></span><span class="tx">Session mgmt &amp; logout store reset, multi-step wizards, feature flags/theme sync</span></label></li><li><label><input type="checkbox" data-k="6-9-1"><span class="box"></span><span class="tx">Normalized e-commerce dashboards, debounced search, optimistic "like" button</span></label></li><li><label><input type="checkbox" data-k="6-9-2"><span class="box"></span><span class="tx">Real-time collaborative workspace (OT + WebSockets), infinite undo/redo history stack, cross-tab/window sync via BroadcastChannel</span></label></li><li><label><input type="checkbox" data-k="6-9-3"><span class="box"></span><span class="tx">Micro-frontend state isolation, offline-first analytics sync engine with IndexedDB queue</span></label></li></ul></div></div></details>
-<details class="sec" id="s7" open><summary><span class="badge">07</span><span class="st">Data Fetching &amp; Server State</span><span class="cnt" data-total="7"><b>0</b>/7</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="7-0-0"><span class="box"></span><span class="tx"><code>fetch</code>/Axios patterns, race conditions, <code>AbortController</code> cancellation, idempotency</span></label></li><li><label><input type="checkbox" data-k="7-0-1"><span class="box"></span><span class="tx">React Query / TanStack Query — caching, stale-while-revalidate, invalidation</span></label></li><li><label><input type="checkbox" data-k="7-0-2"><span class="box"></span><span class="tx">SWR</span></label></li><li><label><input type="checkbox" data-k="7-0-3"><span class="box"></span><span class="tx">Suspense-based data fetching; Render-as-You-Fetch vs Fetch-on-Render vs Fetch-then-Render (waterfalls)</span></label></li><li><label><input type="checkbox" data-k="7-0-4"><span class="box"></span><span class="tx">Server state vs client state distinction</span></label></li><li><label><input type="checkbox" data-k="7-0-5"><span class="box"></span><span class="tx">Optimistic updates &amp; rollback strategies</span></label></li><li><label><input type="checkbox" data-k="7-0-6"><span class="box"></span><span class="tx">HTTP caching (Cache-Control, ETag) vs client-side memory caching boundaries</span></label></li></ul></div></div></details>
-<details class="sec" id="s8" open><summary><span class="badge">08</span><span class="st">Performance Optimization</span><span class="cnt" data-total="16"><b>0</b>/16</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="8-0-0"><span class="box"></span><span class="tx">Identifying unnecessary re-renders (React DevTools Profiler, flame graphs)</span></label></li><li><label><input type="checkbox" data-k="8-0-1"><span class="box"></span><span class="tx">Memoization strategy — when it backfires (memory vs compute tradeoff)</span></label></li><li><label><input type="checkbox" data-k="8-0-2"><span class="box"></span><span class="tx">Reference-equality pitfalls (inline objects/functions breaking memoization)</span></label></li><li><label><input type="checkbox" data-k="8-0-3"><span class="box"></span><span class="tx">Splitting components / moving state down to limit re-render blast radius</span></label></li><li><label><input type="checkbox" data-k="8-0-4"><span class="box"></span><span class="tx">Code splitting: <code>React.lazy</code>, dynamic <code>import()</code>, chunk-failure handling</span></label></li><li><label><input type="checkbox" data-k="8-0-5"><span class="box"></span><span class="tx">Virtualization: <code>react-window</code>, <code>react-virtualized</code>, <code>@tanstack/virtual</code>; windowing trade-offs</span></label></li><li><label><input type="checkbox" data-k="8-0-6"><span class="box"></span><span class="tx">Web Vitals in React context: LCP, INP (replaced FID), CLS, TTFB, FCP, TTI, TBT/long tasks (&gt;50ms)</span></label></li><li><label><input type="checkbox" data-k="8-0-7"><span class="box"></span><span class="tx">Bundle analysis &amp; tree-shaking (<code>sideEffects</code> field, ESM imports, barrel-file risks)</span></label></li><li><label><input type="checkbox" data-k="8-0-8"><span class="box"></span><span class="tx">Image/font loading strategies, lazy loading, SVGO</span></label></li><li><label><input type="checkbox" data-k="8-0-9"><span class="box"></span><span class="tx">Avoiding prop drilling / render cascades</span></label></li><li><label><input type="checkbox" data-k="8-0-10"><span class="box"></span><span class="tx">Concurrent features for perf: automatic batching, <code>useTransition</code>, <code>useDeferredValue</code>, Suspense coordination</span></label></li><li><label><input type="checkbox" data-k="8-0-11"><span class="box"></span><span class="tx">Memory management: leak diagnosis, heap snapshots, unbounded cache growth (RTK Query/React Query <code>gcTime</code>)</span></label></li><li><label><input type="checkbox" data-k="8-0-12"><span class="box"></span><span class="tx">CSS &amp; layout performance: layout thrashing, CSS-in-JS runtime cost, <code>will-change</code>/GPU-accelerated props, CSS Containment (<code>contain: content</code>, <code>content-visibility: auto</code>)</span></label></li><li><label><input type="checkbox" data-k="8-0-13"><span class="box"></span><span class="tx">Performance budgets in CI, alerting on Web Vitals regressions, correlating perf with business metrics</span></label></li><li><label><input type="checkbox" data-k="8-0-14"><span class="box"></span><span class="tx">Prioritized scheduling via <code>scheduler.postTask()</code>; Web Workers for main-thread inversion</span></label></li><li><label><input type="checkbox" data-k="8-0-15"><span class="box"></span><span class="tx">System-design style: diagnose a slow 10k-row table, cut a 5MB bundle, debug high INP, 15-widget dashboard without waterfalls</span></label></li></ul></div></div></details>
-<details class="sec" id="s9" open><summary><span class="badge">09</span><span class="st">Streaming Data, Real-Time &amp; Large File Handling (Advanced)</span><span class="cnt" data-total="9"><b>0</b>/9</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="9-0-0"><span class="box"></span><span class="tx">Real-time stream pipeline: incoming stream → worker/in-memory buffer → throttled batched dispatch → Fiber update</span></label></li><li><label><input type="checkbox" data-k="9-0-1"><span class="box"></span><span class="tx">SSE vs WebSockets vs WebTransport (HTTP/3/QUIC) trade-offs</span></label></li><li><label><input type="checkbox" data-k="9-0-2"><span class="box"></span><span class="tx">HTTP/2 &amp; HTTP/3 multiplexing/prioritization</span></label></li><li><label><input type="checkbox" data-k="9-0-3"><span class="box"></span><span class="tx">Never pushing high-frequency data directly into React/Redux state — buffer + rAF-timed batched dispatch (60/120fps)</span></label></li><li><label><input type="checkbox" data-k="9-0-4"><span class="box"></span><span class="tx">Chunked/multipart file uploads (<code>File.slice()</code>), concurrent upload pool with concurrency limits, resumable uploads with client-side hashing (MD5/SHA-256) via Web Worker</span></label></li><li><label><input type="checkbox" data-k="9-0-5"><span class="box"></span><span class="tx"><code>ReadableStream</code> API for large downloads; File System Access API for direct-to-disk streaming; Object URL memory-safe downloads (<code>createObjectURL</code>/<code>revokeObjectURL</code>)</span></label></li><li><label><input type="checkbox" data-k="9-0-6"><span class="box"></span><span class="tx">Global <code>AbortController</code> cancel-all orchestration</span></label></li><li><label><input type="checkbox" data-k="9-0-7"><span class="box"></span><span class="tx">CSS Houdini/Paint Worklets, OffscreenCanvas, Intersection/Resize Observer custom hooks</span></label></li><li><label><input type="checkbox" data-k="9-0-8"><span class="box"></span><span class="tx">Mock system design: real-time collaborative financial dashboard, video-processing workspace with chunked upload + live WebSocket chart</span></label></li></ul></div></div></details>
-<details class="sec" id="s10" open><summary><span class="badge">10</span><span class="st">Rendering Strategies: CSR / SSR / SSG / ISR / RSC</span><span class="cnt" data-total="16"><b>0</b>/16</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="10-0-0"><span class="box"></span><span class="tx">Rendering strategy comparison and TTFB/FCP/TTI impact per strategy; SEO implications</span></label></li><li><label><input type="checkbox" data-k="10-0-1"><span class="box"></span><span class="tx"><code>renderToString</code>, <code>renderToStaticMarkup</code>, <code>renderToPipeableStream</code>/<code>renderToReadableStream</code> (streaming SSR)</span></label></li><li><label><input type="checkbox" data-k="10-0-2"><span class="box"></span><span class="tx">Hydration mechanics — attaching listeners/reconciling to existing DOM (not re-rendering)</span></label></li><li><label><input type="checkbox" data-k="10-0-3"><span class="box"></span><span class="tx">Hydration mismatches (browser-only APIs, <code>Date.now()</code>, <code>typeof window</code> conditionals), <code>suppressHydrationWarning</code></span></label></li><li><label><input type="checkbox" data-k="10-0-4"><span class="box"></span><span class="tx">Selective/partial hydration, progressive hydration, streaming out-of-order via Suspense</span></label></li><li><label><input type="checkbox" data-k="10-0-5"><span class="box"></span><span class="tx">Resumability (Qwik) as a conceptual contrast to hydration</span></label></li><li><label><input type="checkbox" data-k="10-0-6"><span class="box"></span><span class="tx">Data fetching for SSR: waterfalls, parallel fetch/preloading, dehydrate/hydrate caching pattern</span></label></li><li><label><input type="checkbox" data-k="10-0-7"><span class="box"></span><span class="tx">React Server Components (RSC): server vs client component boundary (<code>&quot;use client&quot;</code>), what can/can't run where, serialization constraints, RSC payload wire format, bundle-size reduction, composition rules</span></label></li><li><label><input type="checkbox" data-k="10-0-8"><span class="box"></span><span class="tx">Next.js as reference implementation: Pages Router (<code>getServerSideProps</code>/<code>getStaticProps</code>/<code>getStaticPaths</code>) vs App Router (Server Components by default, layouts, loading/error file conventions), ISR &amp; on-demand revalidation, Middleware/edge runtime, Route handlers, Server Actions, Next.js caching layers (Data/Full Route/Router cache)</span></label></li><li><label><input type="checkbox" data-k="10-0-9"><span class="box"></span><span class="tx">Other frameworks for contrast: Remix (loaders/actions), Gatsby (SSG+GraphQL), Astro (islands architecture)</span></label></li><li><label><input type="checkbox" data-k="10-0-10"><span class="box"></span><span class="tx">SSR performance: avoiding blocking Node event loop, full-page/edge caching, component-level RSC caching, N+1 avoidance</span></label></li><li><label><input type="checkbox" data-k="10-0-11"><span class="box"></span><span class="tx">State across server/client boundary: per-request store instantiation, <code>window.__PRELOADED_STATE__</code> pattern, avoiding cross-request contamination</span></label></li><li><label><input type="checkbox" data-k="10-0-12"><span class="box"></span><span class="tx">Auth/cookies in SSR — reading session pre-render, avoiding auth flicker, CSRF w/ Server Actions</span></label></li><li><label><input type="checkbox" data-k="10-0-13"><span class="box"></span><span class="tx">Error handling &amp; timeouts in SSR context</span></label></li><li><label><input type="checkbox" data-k="10-0-14"><span class="box"></span><span class="tx">SSR deployment: Node server vs serverless (cold starts), Edge SSR constraints, horizontal scaling costs</span></label></li><li><label><input type="checkbox" data-k="10-0-15"><span class="box"></span><span class="tx">Debugging a production hydration mismatch — diagnosis walkthrough</span></label></li></ul></div></div></details>
-<details class="sec" id="s11" open><summary><span class="badge">11</span><span class="st">Routing</span><span class="cnt" data-total="4"><b>0</b>/4</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="11-0-0"><span class="box"></span><span class="tx">React Router — nested routes, dynamic routing, v6.4+ data APIs (loaders/actions)</span></label></li><li><label><input type="checkbox" data-k="11-0-1"><span class="box"></span><span class="tx">Route-based code splitting</span></label></li><li><label><input type="checkbox" data-k="11-0-2"><span class="box"></span><span class="tx">Protected routes &amp; auth flows</span></label></li><li><label><input type="checkbox" data-k="11-0-3"><span class="box"></span><span class="tx">Deep linking &amp; browser-history handling across composed apps</span></label></li></ul></div></div></details>
-<details class="sec" id="s12" open><summary><span class="badge">12</span><span class="st">Forms</span><span class="cnt" data-total="5"><b>0</b>/5</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="12-0-0"><span class="box"></span><span class="tx">Controlled vs uncontrolled forms</span></label></li><li><label><input type="checkbox" data-k="12-0-1"><span class="box"></span><span class="tx">Formik vs React Hook Form — why RHF avoids re-renders internally</span></label></li><li><label><input type="checkbox" data-k="12-0-2"><span class="box"></span><span class="tx">Validation strategies: Yup, Zod</span></label></li><li><label><input type="checkbox" data-k="12-0-3"><span class="box"></span><span class="tx">Complex dynamic forms</span></label></li><li><label><input type="checkbox" data-k="12-0-4"><span class="box"></span><span class="tx">React 19 native form handling: <code>useActionState</code>, <code>useFormStatus</code>, Server Actions, automatic rollback on failure, request dedup</span></label></li></ul></div></div></details>
-<details class="sec" id="s13" open><summary><span class="badge">13</span><span class="st">Testing</span><span class="cnt" data-total="12"><b>0</b>/12</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="13-0-0"><span class="box"></span><span class="tx">Jest fundamentals</span></label></li><li><label><input type="checkbox" data-k="13-0-1"><span class="box"></span><span class="tx">React Testing Library philosophy — behavior over implementation</span></label></li><li><label><input type="checkbox" data-k="13-0-2"><span class="box"></span><span class="tx">Mocking API calls &amp; timers; Mocking Service Worker (MSW) for network-layer interception</span></label></li><li><label><input type="checkbox" data-k="13-0-3"><span class="box"></span><span class="tx">Snapshot testing pros/cons</span></label></li><li><label><input type="checkbox" data-k="13-0-4"><span class="box"></span><span class="tx">Cypress / Playwright for E2E</span></label></li><li><label><input type="checkbox" data-k="13-0-5"><span class="box"></span><span class="tx">Testing hooks in isolation</span></label></li><li><label><input type="checkbox" data-k="13-0-6"><span class="box"></span><span class="tx">Testing thunks (mock <code>dispatch</code>/<code>getState</code>, <code>redux-mock-store</code>)</span></label></li><li><label><input type="checkbox" data-k="13-0-7"><span class="box"></span><span class="tx">Testing sagas step-by-step (<code>redux-saga-test-plan</code>)</span></label></li><li><label><input type="checkbox" data-k="13-0-8"><span class="box"></span><span class="tx">Testing concurrent features — asserting mid-<code>useTransition</code> behavior, deterministic <code>act()</code> usage</span></label></li><li><label><input type="checkbox" data-k="13-0-9"><span class="box"></span><span class="tx">Visual regression testing (Chromatic, Percy, Storybook)</span></label></li><li><label><input type="checkbox" data-k="13-0-10"><span class="box"></span><span class="tx">Contract testing (micro-frontend shell ↔ remotes)</span></label></li><li><label><input type="checkbox" data-k="13-0-11"><span class="box"></span><span class="tx">Automated a11y testing (axe-core, jest-axe)</span></label></li></ul></div></div></details>
-<details class="sec" id="s14" open><summary><span class="badge">14</span><span class="st">TypeScript (General + React-Specific)</span><span class="cnt" data-total="26"><b>0</b>/26</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><h3>Foundations</h3><ul><li><label><input type="checkbox" data-k="14-1-0"><span class="box"></span><span class="tx">Structural typing (duck typing), inference vs explicit annotation, <code>any</code> vs <code>unknown</code> vs <code>never</code> vs <code>void</code></span></label></li><li><label><input type="checkbox" data-k="14-1-1"><span class="box"></span><span class="tx">Type assertions (<code>as</code>) vs casting, <code>as const</code></span></label></li><li><label><input type="checkbox" data-k="14-1-2"><span class="box"></span><span class="tx">Arrays/tuples, interfaces vs type aliases, enums &amp; pitfalls, literal types</span></label></li></ul></div><div class="grp"><h3>Composition &amp; Narrowing</h3><ul><li><label><input type="checkbox" data-k="14-2-0"><span class="box"></span><span class="tx">Union/intersection types, discriminated unions + exhaustiveness (<code>never</code>) checks</span></label></li><li><label><input type="checkbox" data-k="14-2-1"><span class="box"></span><span class="tx">Narrowing: <code>typeof</code>/<code>instanceof</code>/<code>in</code>, custom type guards (<code>is</code>), assertion functions (<code>asserts</code>)</span></label></li></ul></div><div class="grp"><h3>Generics &amp; Meta-Programming</h3><ul><li><label><input type="checkbox" data-k="14-3-0"><span class="box"></span><span class="tx">Generic functions/classes/constraints (<code>extends</code>), default generic params, inference &amp; variance</span></label></li><li><label><input type="checkbox" data-k="14-3-1"><span class="box"></span><span class="tx"><code>keyof</code>, lookup types, mapped types (+key remapping via <code>as</code>)</span></label></li><li><label><input type="checkbox" data-k="14-3-2"><span class="box"></span><span class="tx">Conditional types, <code>infer</code> keyword, distributive conditional types, recursive types</span></label></li><li><label><input type="checkbox" data-k="14-3-3"><span class="box"></span><span class="tx">Utility types under the hood: <code>Pick</code>, <code>Omit</code>, <code>Partial</code>, <code>Required</code>, <code>Record</code>, <code>Extract</code>, <code>Exclude</code>, <code>ReturnType</code>, <code>Parameters</code>, <code>InstanceType</code>, <code>Awaited</code>, <code>NonNullable</code></span></label></li><li><label><input type="checkbox" data-k="14-3-4"><span class="box"></span><span class="tx">Template literal types (type-safe routes/CSS/event names)</span></label></li></ul></div><div class="grp"><h3>OOP, Modules, Declarations</h3><ul><li><label><input type="checkbox" data-k="14-4-0"><span class="box"></span><span class="tx">Access modifiers, parameter properties, abstract classes, <code>override</code>, static blocks</span></label></li><li><label><input type="checkbox" data-k="14-4-1"><span class="box"></span><span class="tx"><code>import type</code>/<code>export type</code>, namespaces vs modules, declaration merging, ambient modules/<code>.d.ts</code>, module augmentation</span></label></li><li><label><input type="checkbox" data-k="14-4-2"><span class="box"></span><span class="tx"><code>tsconfig.json</code> deep dive: <code>strict</code>, <code>noImplicitAny</code>, <code>strictNullChecks</code>, <code>strictFunctionTypes</code>, <code>noUncheckedIndexedAccess</code>, module resolution, path mapping, project references/composite builds</span></label></li></ul></div><div class="grp"><h3>Null Safety &amp; Error Patterns</h3><ul><li><label><input type="checkbox" data-k="14-5-0"><span class="box"></span><span class="tx"><code>strictNullChecks</code>, <code>?.</code>/<code>??</code>, non-null assertion (<code>!</code>), definite assignment (<code>!:</code>)</span></label></li><li><label><input type="checkbox" data-k="14-5-1"><span class="box"></span><span class="tx">Result/Either pattern, exhaustiveness with <code>switch</code>+<code>never</code>, discriminated-union API response modeling</span></label></li></ul></div><div class="grp"><h3>Interop &amp; Runtime Safety</h3><ul><li><label><input type="checkbox" data-k="14-6-0"><span class="box"></span><span class="tx">Typing untyped libs, <code>allowJs</code>/<code>checkJs</code>, runtime validation (Zod/io-ts) vs compile-time types</span></label></li></ul></div><div class="grp"><h3>TypeScript + React</h3><ul><li><label><input type="checkbox" data-k="14-7-0"><span class="box"></span><span class="tx">Typing props/state/refs/events (<code>React.MouseEvent&lt;HTMLButtonElement&gt;</code> etc.)</span></label></li><li><label><input type="checkbox" data-k="14-7-1"><span class="box"></span><span class="tx"><code>React.FC</code> debate, <code>ComponentProps</code>/<code>ComponentPropsWithoutRef</code>/<code>PropsWithChildren</code></span></label></li><li><label><input type="checkbox" data-k="14-7-2"><span class="box"></span><span class="tx">Typing hooks: <code>useState&lt;T&gt;</code>, <code>useRef&lt;T&gt;</code>, <code>useReducer</code> with discriminated action unions</span></label></li><li><label><input type="checkbox" data-k="14-7-3"><span class="box"></span><span class="tx">Generic components (<code>&lt;T,&gt;() =&gt;</code> gotcha in <code>.tsx</code>), typing HOCs/render props generically</span></label></li><li><label><input type="checkbox" data-k="14-7-4"><span class="box"></span><span class="tx">Typing context (<code>createContext&lt;T | undefined&gt;</code> pattern)</span></label></li><li><label><input type="checkbox" data-k="14-7-5"><span class="box"></span><span class="tx">Polymorphic components (<code>as</code> prop) typing</span></label></li></ul></div><div class="grp"><h3>Branded/Nominal Typing &amp; Security</h3><ul><li><label><input type="checkbox" data-k="14-8-0"><span class="box"></span><span class="tx">Branded/opaque types simulating nominal typing (e.g., <code>UserId</code>, <code>SanitizedHTML</code>)</span></label></li><li><label><input type="checkbox" data-k="14-8-1"><span class="box"></span><span class="tx"><code>unique symbol</code></span></label></li></ul></div><div class="grp"><h3>Compiler Internals (staff/principal)</h3><ul><li><label><input type="checkbox" data-k="14-9-0"><span class="box"></span><span class="tx">Structural assignability checking, AST representation, type widening/narrowing internals, declaration emit, deferred vs immediate conditional-type evaluation, compile-time performance pitfalls of deep generic chains</span></label></li></ul></div><div class="grp"><h3>System-Design-Style TS</h3><ul><li><label><input type="checkbox" data-k="14-10-0"><span class="box"></span><span class="tx">Type-safe REST client, type-safe form validation library, type-safe router (inferred path params), plugin system with type-safe extensibility, <code>DeepPartial&lt;T&gt;</code>/<code>DeepReadonly&lt;T&gt;</code>, Object-Path-Getter via template literals, dynamic Redux slice action typings, type-safe i18n translation function</span></label></li></ul></div></div></details>
-<details class="sec" id="s15" open><summary><span class="badge">15</span><span class="st">Security</span><span class="cnt" data-total="20"><b>0</b>/20</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="15-0-0"><span class="box"></span><span class="tx">XSS: stored/reflected/DOM-based; React's built-in JSX escaping and its exact bypass vectors (<code>javascript:</code> URLs)</span></label></li><li><label><input type="checkbox" data-k="15-0-1"><span class="box"></span><span class="tx"><code>dangerouslySetInnerHTML</code> — ESLint blocking + DOMPurify sanitization; SVG-based XSS vectors</span></label></li><li><label><input type="checkbox" data-k="15-0-2"><span class="box"></span><span class="tx">Content Security Policy: eliminating <code>unsafe-inline</code>, nonces/hashes, Trusted Types API, report-only rollout mode</span></label></li><li><label><input type="checkbox" data-k="15-0-3"><span class="box"></span><span class="tx">CSRF: tokens (double-submit, synchronizer), <code>SameSite</code> cookies, Server Actions built-in protections</span></label></li><li><label><input type="checkbox" data-k="15-0-4"><span class="box"></span><span class="tx">Token storage matrix: localStorage/sessionStorage vs cookies, <code>HttpOnly</code>/<code>Secure</code>/<code>SameSite</code> flags</span></label></li><li><label><input type="checkbox" data-k="15-0-5"><span class="box"></span><span class="tx">Backend-for-Frontend (BFF) pattern — moving token/cookie handling off the client entirely</span></label></li><li><label><input type="checkbox" data-k="15-0-6"><span class="box"></span><span class="tx">OAuth 2.1 + PKCE for SPAs (why implicit flow is deprecated)</span></label></li><li><label><input type="checkbox" data-k="15-0-7"><span class="box"></span><span class="tx">Session teardown &amp; cross-tab sync (BroadcastChannel/storage events) on logout</span></label></li><li><label><input type="checkbox" data-k="15-0-8"><span class="box"></span><span class="tx">Authorization: client-side gating is UX only; real enforcement is server-side; role-based UI vs actual permission enforcement</span></label></li><li><label><input type="checkbox" data-k="15-0-9"><span class="box"></span><span class="tx">TypeScript compile-time security: branded/tainted-string types, exhaustive <code>never</code> checks for new roles/flags, strict serialization (Zod/TypeBox) stripping unexpected API properties</span></label></li><li><label><input type="checkbox" data-k="15-0-10"><span class="box"></span><span class="tx">State/memory security: prototype-pollution prevention in deep-merges, nullifying sensitive closures, malicious Redux DevTools/extension action injection</span></label></li><li><label><input type="checkbox" data-k="15-0-11"><span class="box"></span><span class="tx">Supply chain: SBOM, dependency poisoning/typosquatting, lockfile integrity, <code>npm audit</code>/Snyk/Dependabot</span></label></li><li><label><input type="checkbox" data-k="15-0-12"><span class="box"></span><span class="tx">Subresource Integrity (SRI) for third-party scripts/fonts</span></label></li><li><label><input type="checkbox" data-k="15-0-13"><span class="box"></span><span class="tx">Clickjacking defenses: <code>X-Frame-Options</code>, <code>frame-ancestors</code></span></label></li><li><label><input type="checkbox" data-k="15-0-14"><span class="box"></span><span class="tx">Other security headers: <code>X-Content-Type-Options</code>, <code>Referrer-Policy</code>, <code>Permissions-Policy</code>, HSTS</span></label></li><li><label><input type="checkbox" data-k="15-0-15"><span class="box"></span><span class="tx">CORS from the frontend-consumer perspective (credentials mode, allowed origins)</span></label></li><li><label><input type="checkbox" data-k="15-0-16"><span class="box"></span><span class="tx">Third-party scripts/iframes: <code>sandbox</code> attribute, <code>postMessage</code> origin validation</span></label></li><li><label><input type="checkbox" data-k="15-0-17"><span class="box"></span><span class="tx">Input validation: client-side as UX-only, schema validation at boundaries (Zod/Yup)</span></label></li><li><label><input type="checkbox" data-k="15-0-18"><span class="box"></span><span class="tx">Security testing: SAST in CI, pen-testing mindset, OWASP Top 10 mapping to frontend</span></label></li><li><label><input type="checkbox" data-k="15-0-19"><span class="box"></span><span class="tx">Elite scenario: zero-data-exfiltration architecture for a regulated medical dashboard (Trusted Types + DOMPurify + BFF + strict CSP)</span></label></li></ul></div></div></details>
-<details class="sec" id="s16" open><summary><span class="badge">16</span><span class="st">Build Tools, Bundling &amp; Compilation</span><span class="cnt" data-total="13"><b>0</b>/13</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="16-0-0"><span class="box"></span><span class="tx">Dev vs prod builds (minification, dead-code elimination, <code>NODE_ENV</code>)</span></label></li><li><label><input type="checkbox" data-k="16-0-1"><span class="box"></span><span class="tx">CRA (and its deprecation) vs Vite vs Next.js build pipeline</span></label></li><li><label><input type="checkbox" data-k="16-0-2"><span class="box"></span><span class="tx">Source maps: generation, private upload to Sentry/Bugsnag, production exclusion for security</span></label></li><li><label><input type="checkbox" data-k="16-0-3"><span class="box"></span><span class="tx">Tree-shaking mechanics, <code>sideEffects</code> field, barrel-file risks</span></label></li><li><label><input type="checkbox" data-k="16-0-4"><span class="box"></span><span class="tx">Code-splitting at build time (route/component-based)</span></label></li><li><label><input type="checkbox" data-k="16-0-5"><span class="box"></span><span class="tx">Bundle analysis (<code>webpack-bundle-analyzer</code>, <code>vite-bundle-visualizer</code>, <code>source-map-explorer</code>)</span></label></li><li><label><input type="checkbox" data-k="16-0-6"><span class="box"></span><span class="tx">Asset optimization: image compression, font subsetting, SVG optimization</span></label></li><li><label><input type="checkbox" data-k="16-0-7"><span class="box"></span><span class="tx">Output hashing/fingerprinting (<code>[contenthash]</code>) for cache busting</span></label></li><li><label><input type="checkbox" data-k="16-0-8"><span class="box"></span><span class="tx">Differential loading (modern ESM vs legacy <code>nomodule</code> fallback bundles)</span></label></li><li><label><input type="checkbox" data-k="16-0-9"><span class="box"></span><span class="tx">Babel JSX transforms, ESLint/Prettier + <code>eslint-plugin-react-hooks</code></span></label></li><li><label><input type="checkbox" data-k="16-0-10"><span class="box"></span><span class="tx">The React Compiler ("React Forget") — automatic memoization, obsoleting manual <code>useMemo</code>/<code>useCallback</code></span></label></li><li><label><input type="checkbox" data-k="16-0-11"><span class="box"></span><span class="tx"><code>&quot;use client&quot;</code> / <code>&quot;use server&quot;</code> directive boundary handling</span></label></li><li><label><input type="checkbox" data-k="16-0-12"><span class="box"></span><span class="tx">Document metadata/asset loading (React 19 native <code>&lt;title&gt;</code>/<code>&lt;meta&gt;</code>/<code>&lt;link&gt;</code> hoisting, <code>preload</code>/<code>preinit</code>)</span></label></li></ul></div></div></details>
-<details class="sec" id="s17" open><summary><span class="badge">17</span><span class="st">Environment Configuration</span><span class="cnt" data-total="7"><b>0</b>/7</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="17-0-0"><span class="box"></span><span class="tx"><code>.env</code>/<code>.env.local</code>/<code>.env.production</code> precedence</span></label></li><li><label><input type="checkbox" data-k="17-0-1"><span class="box"></span><span class="tx">Build-time vs runtime env vars — critical distinction; <code>REACT_APP_</code>/<code>VITE_</code> prefix security rationale</span></label></li><li><label><input type="checkbox" data-k="17-0-2"><span class="box"></span><span class="tx">Runtime config injection patterns (<code>window.__env__</code>, config fetched at boot) for one-build-many-environments</span></label></li><li><label><input type="checkbox" data-k="17-0-3"><span class="box"></span><span class="tx">Secrets management — never ship secrets to the client</span></label></li><li><label><input type="checkbox" data-k="17-0-4"><span class="box"></span><span class="tx">Multi-environment strategy (dev/staging/QA/UAT/prod)</span></label></li><li><label><input type="checkbox" data-k="17-0-5"><span class="box"></span><span class="tx">Feature flags: LaunchDarkly/Unleash/homemade; build-time vs runtime flags</span></label></li><li><label><input type="checkbox" data-k="17-0-6"><span class="box"></span><span class="tx">Config validation/fail-fast at startup</span></label></li></ul></div></div></details>
-<details class="sec" id="s18" open><summary><span class="badge">18</span><span class="st">Deployment &amp; Hosting Infrastructure</span><span class="cnt" data-total="18"><b>0</b>/18</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="18-0-0"><span class="box"></span><span class="tx">Static hosting/Jamstack (S3/Cloudflare Pages/Vercel/Netlify/GitHub Pages/Firebase/Azure SWA)</span></label></li><li><label><input type="checkbox" data-k="18-0-1"><span class="box"></span><span class="tx">SPA routing on static hosts — 404-fallback-to-index.html / CDN rewrite rules</span></label></li><li><label><input type="checkbox" data-k="18-0-2"><span class="box"></span><span class="tx">Cache-Control strategy: immutable fingerprinted assets vs <code>no-cache</code> entry HTML</span></label></li><li><label><input type="checkbox" data-k="18-0-3"><span class="box"></span><span class="tx">Atomic deployments &amp; origin pinning (avoiding stale-chunk mismatches during release)</span></label></li><li><label><input type="checkbox" data-k="18-0-4"><span class="box"></span><span class="tx">Edge Computing/ESR (Cloudflare Workers, Vercel Edge, CloudFront Functions) — constraints, use cases</span></label></li><li><label><input type="checkbox" data-k="18-0-5"><span class="box"></span><span class="tx">Containerization: multi-stage Docker builds, Nginx/Caddy SPA-fallback + gzip/brotli config, Docker Compose, container registries</span></label></li><li><label><input type="checkbox" data-k="18-0-6"><span class="box"></span><span class="tx">Orchestration: Kubernetes basics, ECS/Fargate, AWS/Azure/GCP hosting options, load balancing &amp; auto-scaling for SSR</span></label></li><li><label><input type="checkbox" data-k="18-0-7"><span class="box"></span><span class="tx">CI/CD pipeline stages (lint → typecheck → test → security scan → build → deploy), GitHub Actions/GitLab CI/Jenkins/CircleCI</span></label></li><li><label><input type="checkbox" data-k="18-0-8"><span class="box"></span><span class="tx">Dependency caching in CI, PR preview deployments, semantic-release/automated versioning</span></label></li><li><label><input type="checkbox" data-k="18-0-9"><span class="box"></span><span class="tx">Deployment gates/manual approval, rollback strategy (N previous builds, one-click revert)</span></label></li><li><label><input type="checkbox" data-k="18-0-10"><span class="box"></span><span class="tx">Deployment strategies: blue-green, canary (weighted DNS/Route 53), rolling, feature-flag-gated releases</span></label></li><li><label><input type="checkbox" data-k="18-0-11"><span class="box"></span><span class="tx">SSR/SSG deployment specifics: <code>next export</code> static export, Vercel serverless-per-route model, ISR revalidation, edge vs serverless cold starts</span></label></li><li><label><input type="checkbox" data-k="18-0-12"><span class="box"></span><span class="tx">Production observability: RUM/Web Vitals, Sentry/Bugsnag + source-map upload, APM (Datadog/New Relic), structured SSR logging (ELK/CloudWatch), synthetic uptime checks, alerting</span></label></li><li><label><input type="checkbox" data-k="18-0-13"><span class="box"></span><span class="tx">Security in deployment: CSP/HSTS/<code>X-Frame-Options</code> headers, dependency &amp; secrets scanning in CI, CORS config, SRI</span></label></li><li><label><input type="checkbox" data-k="18-0-14"><span class="box"></span><span class="tx">Versioning &amp; release management: semver, GitFlow/trunk-based dev, release-note automation, frontend/backend API compatibility</span></label></li><li><label><input type="checkbox" data-k="18-0-15"><span class="box"></span><span class="tx">Multi-tenant/multi-region: latency-driven multi-region deploys, white-labeling/per-tenant config, i18n build strategy (runtime switch vs per-locale builds)</span></label></li><li><label><input type="checkbox" data-k="18-0-16"><span class="box"></span><span class="tx">Local dev/prod parity: Docker Compose mirroring, <code>.nvmrc</code>, lockfile discipline (<code>npm ci</code>)</span></label></li><li><label><input type="checkbox" data-k="18-0-17"><span class="box"></span><span class="tx">Package manager strategy: npm vs Yarn vs pnpm (strict/symlinked <code>node_modules</code>), private registries, peer-dependency conflicts</span></label></li></ul></div></div></details>
-<details class="sec" id="s19" open><summary><span class="badge">19</span><span class="st">Monorepo Architecture</span><span class="cnt" data-total="15"><b>0</b>/15</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="19-0-0"><span class="box"></span><span class="tx">Monorepo vs polyrepo trade-offs; when justified vs overengineering</span></label></li><li><label><input type="checkbox" data-k="19-0-1"><span class="box"></span><span class="tx">Workspace support: npm/Yarn(Classic &amp; Berry/PnP)/pnpm workspaces, hoisting &amp; phantom-dependency risk, <code>workspace:*</code> protocol</span></label></li><li><label><input type="checkbox" data-k="19-0-2"><span class="box"></span><span class="tx">Tooling: Nx (project graph, computation caching, <code>nx affected</code>, generators/executors), Turborepo (pipeline config, remote caching), Lerna, Rush, Bazel (conceptual) — comparison</span></label></li><li><label><input type="checkbox" data-k="19-0-3"><span class="box"></span><span class="tx">Build graph &amp; task orchestration, affected/changed detection, parallelization</span></label></li><li><label><input type="checkbox" data-k="19-0-4"><span class="box"></span><span class="tx">Caching: local vs remote/distributed (Nx Cloud, Turborepo Remote Cache), cache-key inputs, invalidation correctness</span></label></li><li><label><input type="checkbox" data-k="19-0-5"><span class="box"></span><span class="tx">Code sharing: shared <code>ui</code>/<code>utils</code>/<code>config</code>/<code>types</code> packages, barrel-file trade-offs, internal versioning (always-latest vs independent), public API boundary discipline</span></label></li><li><label><input type="checkbox" data-k="19-0-6"><span class="box"></span><span class="tx">Dependency management: single-version policy vs drift, circular-dependency prevention, module-boundary lint rules</span></label></li><li><label><input type="checkbox" data-k="19-0-7"><span class="box"></span><span class="tx">Testing: affected-only test runs, cross-package integration, shared test config, multi-app E2E</span></label></li><li><label><input type="checkbox" data-k="19-0-8"><span class="box"></span><span class="tx">CI/CD: affected-based pipelines, independent per-app deploys, matrix builds, Changesets for versioning/changelogs</span></label></li><li><label><input type="checkbox" data-k="19-0-9"><span class="box"></span><span class="tx">Ownership/governance: CODEOWNERS, architectural-boundary enforcement, multi-team scaling</span></label></li><li><label><input type="checkbox" data-k="19-0-10"><span class="box"></span><span class="tx">Micro-frontends inside a monorepo: Module Federation + Nx/Turborepo patterns, shared design-system consumption, build isolation</span></label></li><li><label><input type="checkbox" data-k="19-0-11"><span class="box"></span><span class="tx">TypeScript in monorepos: project references/composite builds, path aliases, type-check performance at scale</span></label></li><li><label><input type="checkbox" data-k="19-0-12"><span class="box"></span><span class="tx">Migration: merging polyrepos (git subtree/filter-repo), incrementally adopting Nx/Turborepo, splitting an over-large package</span></label></li><li><label><input type="checkbox" data-k="19-0-13"><span class="box"></span><span class="tx">Common pitfalls: phantom dependencies, over/under-granular packages, stale-cache-induced false-green CI</span></label></li><li><label><input type="checkbox" data-k="19-0-14"><span class="box"></span><span class="tx">System design: 3-app monorepo (web/admin/mobile-web) w/ shared component lib, affected-only CI for 10-app repo w/ remote caching, module-boundary rules (checkout vs admin), org-wide monorepo vs domain-split vs polyrepo trade-off (200-engineer org)</span></label></li></ul></div></div></details>
-<details class="sec" id="s20" open><summary><span class="badge">20</span><span class="st">Micro-Frontend Architecture</span><span class="cnt" data-total="19"><b>0</b>/19</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="20-0-0"><span class="box"></span><span class="tx">Motivation: independent deployability, team autonomy, tech-stack independence, Conway's Law; honest cost trade-offs vs a well-structured monorepo SPA</span></label></li><li><label><input type="checkbox" data-k="20-0-1"><span class="box"></span><span class="tx">Decomposition: vertical (domain) vs horizontal (page-region) split, DDD bounded contexts, single-spa "applications" vs "parcels"</span></label></li><li><label><input type="checkbox" data-k="20-0-2"><span class="box"></span><span class="tx">Integration approaches: build-time (npm packages) vs runtime-JS (Module Federation/SystemJS) vs iframes (isolation, why largely avoided) vs server-side/Edge-Side Includes composition</span></label></li><li><label><input type="checkbox" data-k="20-0-3"><span class="box"></span><span class="tx">Webpack Module Federation: host/remote, <code>exposes</code>/<code>remotes</code>, singleton shared deps (React/ReactDOM), version-mismatch handling (<code>strictVersion</code>), dynamic remote resolution at runtime, bidirectional host+remote apps; Vite federation-plugin differences</span></label></li><li><label><input type="checkbox" data-k="20-0-4"><span class="box"></span><span class="tx">Orchestration frameworks: single-spa lifecycle (bootstrap/mount/unmount), qiankun sandboxing, Piral pilet architecture, hand-rolled shells</span></label></li><li><label><input type="checkbox" data-k="20-0-5"><span class="box"></span><span class="tx">Routing: shell-owned top-level routing + delegated sub-routes, route-based lazy loading, shared-router vs independent-router+URL-sync, cross-app deep linking, multi-app browser-history handling</span></label></li><li><label><input type="checkbox" data-k="20-0-6"><span class="box"></span><span class="tx">Inter-app communication: CustomEvents/pub-sub bus, shared injected store (coupling trade-off), URL/query-param state, props from shell, avoiding tight coupling</span></label></li><li><label><input type="checkbox" data-k="20-0-7"><span class="box"></span><span class="tx">Styling isolation: CSS collision problems, CSS Modules/CSS-in-JS scoping, Shadow DOM, shared design tokens, namespacing conventions</span></label></li><li><label><input type="checkbox" data-k="20-0-8"><span class="box"></span><span class="tx">Shared dependencies/versioning: avoiding duplicate framework copies, singleton strategies/import maps, independent vs enforced-shared versions, design-system distribution &amp; breaking-change handling</span></label></li><li><label><input type="checkbox" data-k="20-0-9"><span class="box"></span><span class="tx">Cross-boundary state: why global Redux is tricky across independently-deployed apps, per-app vs shared/cross-cutting state (auth/session/theme/notifications), avoiding a shared store as a hidden coupling point</span></label></li><li><label><input type="checkbox" data-k="20-0-10"><span class="box"></span><span class="tx">Team/ownership: one team per MFE end-to-end, independent CI/CD, versioned shell↔remote contracts, shared design-system governance</span></label></li><li><label><input type="checkbox" data-k="20-0-11"><span class="box"></span><span class="tx">Independent deployability: single-MFE deploy w/o redeploying shell/siblings, dynamic remote-entry resolution, versioned/pinned vs always-latest remotes, feature-flag-gated MFE visibility</span></label></li><li><label><input type="checkbox" data-k="20-0-12"><span class="box"></span><span class="tx">Testing: isolated unit/integration, contract testing (shell↔remote), composed-system E2E, standalone/"parcel" mode</span></label></li><li><label><input type="checkbox" data-k="20-0-13"><span class="box"></span><span class="tx">Performance: bundle-duplication risk, lazy-loading remotes by route, network-waterfall risk (manifest→chunks), remote-entry caching, holistic Web Vitals across a multi-team composed app</span></label></li><li><label><input type="checkbox" data-k="20-0-14"><span class="box"></span><span class="tx">Security: trust boundary (remote MFE has full host-page access unlike iframes), CSP across dynamically-loaded cross-origin remotes, sanitizing inter-MFE data, SSO/token propagation</span></label></li><li><label><input type="checkbox" data-k="20-0-15"><span class="box"></span><span class="tx">SSR with MFEs: composing server-rendered fragments from multiple services, ESI/fragment caching, Next.js + Module Federation immaturity/trade-offs, cross-pipeline hydration challenges</span></label></li><li><label><input type="checkbox" data-k="20-0-16"><span class="box"></span><span class="tx">MFE circuit breakers: detecting remote timeout/script-load failure, auto-unmount + local fallback; Service-Worker interception serving cached stable versions during deploy failures</span></label></li><li><label><input type="checkbox" data-k="20-0-17"><span class="box"></span><span class="tx">Common pitfalls: "distributed monolith" anti-pattern, shared-library bottlenecks, inconsistent UX without design-system discipline, over-fragmentation, version drift</span></label></li><li><label><input type="checkbox" data-k="20-0-18"><span class="box"></span><span class="tx">System design: e-commerce MFE split (search/product/cart/checkout/account), shell responsibility boundary (auth/nav/theming/error boundaries), rollback strategy for a remote breaking prod, cross-MFE checkout communication (cart team A ↔ payment team B), Module Federation vs iframes vs server-side composition trade-off</span></label></li></ul></div></div></details>
-<details class="sec" id="s21" open><summary><span class="badge">21</span><span class="st">Accessibility (a11y)</span><span class="cnt" data-total="5"><b>0</b>/5</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="21-0-0"><span class="box"></span><span class="tx">Semantic HTML in JSX, ARIA roles, focus management, keyboard navigation</span></label></li><li><label><input type="checkbox" data-k="21-0-1"><span class="box"></span><span class="tx">WCAG conformance levels (A/AA/AAA) — org-wide enforcement expectations</span></label></li><li><label><input type="checkbox" data-k="21-0-2"><span class="box"></span><span class="tx">Baking a11y into the design system so teams get it "for free"</span></label></li><li><label><input type="checkbox" data-k="21-0-3"><span class="box"></span><span class="tx">Automated testing (axe-core/jest-axe) vs manual/screen-reader testing</span></label></li><li><label><input type="checkbox" data-k="21-0-4"><span class="box"></span><span class="tx">Complex widget patterns: focus trapping (modals), ARIA live regions, accessible comboboxes/data tables</span></label></li></ul></div></div></details>
-<details class="sec" id="s22" open><summary><span class="badge">22</span><span class="st">Architecture, System Design &amp; Org-Level Concerns</span><span class="cnt" data-total="17"><b>0</b>/17</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><h3>API Layer</h3><ul><li><label><input type="checkbox" data-k="22-1-0"><span class="box"></span><span class="tx">REST vs GraphQL vs tRPC trade-offs; Apollo Client/Relay normalized cache &amp; fragment colocation</span></label></li><li><label><input type="checkbox" data-k="22-1-1"><span class="box"></span><span class="tx">Backend-for-Frontend (BFF) pattern rationale</span></label></li><li><label><input type="checkbox" data-k="22-1-2"><span class="box"></span><span class="tx">API versioning, contract-first design (OpenAPI/GraphQL schema), schema stitching/federation, N+1/DataLoader pattern</span></label></li></ul></div><div class="grp"><h3>Design Systems</h3><ul><li><label><input type="checkbox" data-k="22-2-0"><span class="box"></span><span class="tx">Design tokens (color/spacing/typography), Storybook, headless (Radix/React Aria) vs fully-styled (MUI/Chakra)</span></label></li><li><label><input type="checkbox" data-k="22-2-1"><span class="box"></span><span class="tx">Versioning/distributing across teams, governance/contribution model, visual regression testing (Chromatic/Percy)</span></label></li></ul></div><div class="grp"><h3>i18n &amp; l10n</h3><ul><li><label><input type="checkbox" data-k="22-3-0"><span class="box"></span><span class="tx">react-intl/i18next architecture, runtime vs per-locale builds, RTL/logical CSS properties, <code>Intl</code> pluralization/date/number formatting, translation-management workflows, locale-file bundle-size impact</span></label></li></ul></div><div class="grp"><h3>PWA &amp; Offline-First</h3><ul><li><label><input type="checkbox" data-k="22-4-0"><span class="box"></span><span class="tx">Service workers, caching strategies (cache-first/network-first/SWR), Workbox, offline sync/background sync, IndexedDB persistence, manifest/installability, when it's actually worth it</span></label></li></ul></div><div class="grp"><h3>Native/Cross-Platform</h3><ul><li><label><input type="checkbox" data-k="22-5-0"><span class="box"></span><span class="tx">React Native code-sharing strategy, Expo vs bare workflow, when to extend web architecture to mobile</span></label></li></ul></div><div class="grp"><h3>Resilience &amp; Observability</h3><ul><li><label><input type="checkbox" data-k="22-6-0"><span class="box"></span><span class="tx">Error-boundary placement strategy, graceful degradation, circuit-breaker pattern, exponential-backoff retries</span></label></li><li><label><input type="checkbox" data-k="22-6-1"><span class="box"></span><span class="tx">Structured logging correlated with backend trace IDs, distributed tracing (OpenTelemetry), dashboards tying errors/perf to business KPIs, alerting/on-call runbooks</span></label></li></ul></div><div class="grp"><h3>Governance &amp; Decision-Making</h3><ul><li><label><input type="checkbox" data-k="22-7-0"><span class="box"></span><span class="tx">Architecture Decision Records (ADRs), tech-evaluation POC→pilot→rollout process, technical RFCs</span></label></li><li><label><input type="checkbox" data-k="22-7-1"><span class="box"></span><span class="tx">Tech-debt vs feature-velocity prioritization/justification to leadership</span></label></li><li><label><input type="checkbox" data-k="22-7-2"><span class="box"></span><span class="tx">Org-wide standards/linting/architecture rule enforcement</span></label></li></ul></div><div class="grp"><h3>Legacy Migration</h3><ul><li><label><input type="checkbox" data-k="22-8-0"><span class="box"></span><span class="tx">Strangler Fig pattern, running two frameworks side-by-side (MFE/iframe bridge), class→hooks codemods at scale, state-management migration strategies</span></label></li></ul></div><div class="grp"><h3>Cost &amp; Team</h3><ul><li><label><input type="checkbox" data-k="22-9-0"><span class="box"></span><span class="tx">CDN/bandwidth cost of bundle size, serverless/edge cost models vs always-on, CI infra cost vs cache strategy, justifying spend to non-technical stakeholders</span></label></li><li><label><input type="checkbox" data-k="22-9-1"><span class="box"></span><span class="tx">Mentoring/code-review philosophy, autonomy vs consistency tension, onboarding into complex codebases, cross-functional collaboration, communicating technical risk</span></label></li></ul></div><div class="grp"><h3>Forward-Looking</h3><ul><li><label><input type="checkbox" data-k="22-10-0"><span class="box"></span><span class="tx">React Compiler implications, Signals-based reactivity (Preact Signals/Solid) vs React's re-render model, Server Actions maturity, View Transitions API, WebAssembly's realistic fit in a React app</span></label></li></ul></div></div></details>
-<details class="sec" id="s23" open><summary><span class="badge">23</span><span class="st">Compiled &quot;Elite&quot; System-Design &amp; Mock-Scenario Prompts</span><span class="cnt" data-total="10"><b>0</b>/10</span><span class="chev" aria-hidden="true"></span></summary><div class="inner"><div class="grp"><ul><li><label><input type="checkbox" data-k="23-0-0"><span class="box"></span><span class="tx">Real-Time Collaborative Financial Dashboard (WebSockets + <code>useTransition</code> + <code>createEntityAdapter</code> + optimistic comments)</span></label></li><li><label><input type="checkbox" data-k="23-0-1"><span class="box"></span><span class="tx">Enterprise Micro-Frontend Shell with dynamically-registered isolated state slices</span></label></li><li><label><input type="checkbox" data-k="23-0-2"><span class="box"></span><span class="tx">Offline-First Analytics Sync Engine (IndexedDB queue + Thunk drain on reconnect)</span></label></li><li><label><input type="checkbox" data-k="23-0-3"><span class="box"></span><span class="tx">Browser-based Video Processing Workspace (chunked 4GB upload w/ pause/resume + live WebSocket analytics, 60fps)</span></label></li><li><label><input type="checkbox" data-k="23-0-4"><span class="box"></span><span class="tx">Regulated Medical Dashboard requiring zero data exfiltration under active XSS attack</span></label></li><li><label><input type="checkbox" data-k="23-0-5"><span class="box"></span><span class="tx">Atomic Zero-Downtime Global Deployment Pipeline (40 countries, edge-localized routing)</span></label></li><li><label><input type="checkbox" data-k="23-0-6"><span class="box"></span><span class="tx">Design an SSR architecture for an SEO+personalization product page</span></label></li><li><label><input type="checkbox" data-k="23-0-7"><span class="box"></span><span class="tx">Design a data table with sorting/filtering/pagination/virtualization</span></label></li><li><label><input type="checkbox" data-k="23-0-8"><span class="box"></span><span class="tx">Design an infinite-scroll feed and a real-time notification system</span></label></li><li><label><input type="checkbox" data-k="23-0-9"><span class="box"></span><span class="tx">Trade-off drills: CSR vs SSR vs SSG vs ISR; Thunk vs Saga vs RTK Query for cancel-on-keystroke search; Module Federation vs iframes vs server-side composition; single monorepo vs domain-split vs polyrepo for a 200-engineer org</span></label></li></ul></div></div></details>
- </div>
- <div class="empty" id="empty">No topics match your search.</div>
- <div class="note"><b>Note:</b> Every topic from both source lists has been folded into the sections above — overlapping items (e.g., Fiber architecture, hooks, RTK Query, Saga effects, SSR/RSC, security, monorepo, micro-frontends) were merged rather than duplicated, but no distinct sub-topic, real-world use case, or mock-interview scenario from either list was dropped.</div>
-</main>
-</div>
-<button class="totop" id="totop" aria-label="Back to top">↑</button>
-<script>
-(function(){
- var KEY='react-interview-progress-v1', store={};
- try{store=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){store={}}
- function save(){try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){}}
- var boxes=[].slice.call(document.querySelectorAll('input[data-k]'));
- var secs=[].slice.call(document.querySelectorAll('.sec'));
- function update(){
-  var done=0;
-  secs.forEach(function(s){
-   var b=s.querySelectorAll('input[data-k]'),c=0;
-   b.forEach(function(x){if(x.checked)c++});
-   done+=c;
-   s.querySelector('.cnt b').textContent=c;
-   s.classList.toggle('done',c===b.length&&b.length>0);
-  });
-  var pct=Math.round(done/boxes.length*100);
-  document.getElementById('doneN').textContent=done;
-  document.getElementById('barfill').style.width=pct+'%';
-  document.getElementById('plabel').textContent=pct+'% complete · '+done+' of '+boxes.length+' topics';
- }
- boxes.forEach(function(b){
-  if(store[b.dataset.k])b.checked=true;
-  b.addEventListener('change',function(){if(b.checked)store[b.dataset.k]=1;else delete store[b.dataset.k];save();update()});
- });
- update();
- document.getElementById('reset').onclick=function(){if(confirm('Clear all progress?')){store={};save();boxes.forEach(function(b){b.checked=false});update()}};
- document.getElementById('expand').onclick=function(){secs.forEach(function(s){s.open=true})};
- document.getElementById('collapse').onclick=function(){secs.forEach(function(s){s.open=false})};
- var root=document.documentElement;
- document.getElementById('theme').onclick=function(){
-  var dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
-  root.dataset.theme=dark?'light':'dark';
- };
- // search
- var q=document.getElementById('q'),empty=document.getElementById('empty');
- var items=[].slice.call(document.querySelectorAll('.grp li'));
- items.forEach(function(li){li._t=li.querySelector('.tx').innerHTML});
- function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
- q.addEventListener('input',function(){
-  var v=q.value.trim().toLowerCase(),shown=0;
-  items.forEach(function(li){
-   var tx=li.querySelector('.tx');tx.innerHTML=li._t;
-   var hit=!v||li.textContent.toLowerCase().indexOf(v)>-1;
-   li.classList.toggle('hide',!hit);
-   if(hit&&v){
-    var re=new RegExp('('+esc(v)+')(?![^<]*>)','gi');
-    tx.innerHTML=li._t.replace(re,'<mark>$1</mark>');
-   }
-  });
-  secs.forEach(function(s){
-   var any=false;
-   s.querySelectorAll('.grp').forEach(function(g){
-    var has=g.querySelector('li:not(.hide)');g.classList.toggle('hide',!has);if(has)any=true;
-   });
-   s.classList.toggle('hide',!any);
-   if(any&&v)s.open=true;
-   if(any)shown++;
-  });
-  empty.style.display=shown?'none':'block';
- });
- document.addEventListener('keydown',function(e){
-  if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus()}
-  if(e.key==='Escape'){q.value='';q.dispatchEvent(new Event('input'));q.blur()}
- });
- // nav
- var aside=document.getElementById('aside');
- document.getElementById('menu').onclick=function(){aside.classList.toggle('open')};
- var links=[].slice.call(document.querySelectorAll('#nav a'));
- links.forEach(function(a){a.addEventListener('click',function(){
-  aside.classList.remove('open');
-  var s=document.querySelector(a.getAttribute('href'));if(s)s.open=true;
- })});
- if('IntersectionObserver' in window){
-  var io=new IntersectionObserver(function(es){
-   es.forEach(function(e){if(e.isIntersecting){
-    links.forEach(function(l){l.classList.toggle('on',l.dataset.s===e.target.id)});
-    var on=document.querySelector('#nav a.on');if(on&&on.scrollIntoView)on.scrollIntoView({block:'nearest'});
-   }});
-  },{rootMargin:'-20% 0px -70% 0px'});
-  secs.forEach(function(s){io.observe(s)});
- }
- var top=document.getElementById('totop');
- top.onclick=function(){scrollTo({top:0,behavior:'smooth'})};
- addEventListener('scroll',function(){top.style.display=scrollY>600?'block':'none'},{passive:true});
-})();
-</script>
-</body>
-</html>
+# ⚛️ React.js Tough Interview — Master Roadmap
+
+> A comprehensive, senior-level React interview checklist covering JavaScript foundations, React internals, hooks, state management, performance, rendering, TypeScript, security, deployment, architecture, and staff/principal-level system design.
+
+![Sections](https://img.shields.io/badge/sections-23-4f46e5?style=for-the-badge) ![Topics](https://img.shields.io/badge/topics-308-0891b2?style=for-the-badge) ![Level](https://img.shields.io/badge/level-Advanced%20to%20Principal-7c3aed?style=for-the-badge)
+
+## How to use this roadmap
+
+- [ ] Read each topic and explain it in your own words.
+- [ ] Implement or demonstrate the concept where practical.
+- [ ] Prepare trade-offs, failure modes, and real-world examples for senior-level topics.
+- [ ] Revisit unchecked topics before mock interviews.
+- [ ] Track your progress by checking items off directly in this Markdown file.
+
+> **Interview tip:** For advanced questions, structure answers around the problem, options considered, trade-offs, failure modes, observability, and measurable outcomes.
+
+## Table of contents
+
+01. [JavaScript & Browser Foundations (Prerequisite Layer)](#javascript--browser-foundations-prerequisite-layer)
+02. [React Core Fundamentals](#react-core-fundamentals)
+03. [Fiber Architecture, Reconciliation & Rendering Internals](#fiber-architecture-reconciliation--rendering-internals)
+04. [Hooks — Full Depth](#hooks--full-depth)
+05. [Component Design Patterns & Composition](#component-design-patterns--composition)
+06. [State Management](#state-management)
+07. [Data Fetching & Server State](#data-fetching--server-state)
+08. [Performance Optimization](#performance-optimization)
+09. [Streaming Data, Real-Time & Large File Handling (Advanced)](#streaming-data-real-time--large-file-handling-advanced)
+10. [Rendering Strategies: CSR / SSR / SSG / ISR / RSC](#rendering-strategies-csr--ssr--ssg--isr--rsc)
+11. [Routing](#routing)
+12. [Forms](#forms)
+13. [Testing](#testing)
+14. [TypeScript (General + React-Specific)](#typescript-general--react-specific)
+15. [Security](#security)
+16. [Build Tools, Bundling & Compilation](#build-tools-bundling--compilation)
+17. [Environment Configuration](#environment-configuration)
+18. [Deployment & Hosting Infrastructure](#deployment--hosting-infrastructure)
+19. [Monorepo Architecture](#monorepo-architecture)
+20. [Micro-Frontend Architecture](#micro-frontend-architecture)
+21. [Accessibility (a11y)](#accessibility-a11y)
+22. [Architecture, System Design & Org-Level Concerns](#architecture-system-design--org-level-concerns)
+23. [Compiled "Elite" System-Design & Mock-Scenario Prompts](#compiled-elite-system-design--mock-scenario-prompts)
+
+---
+
+## 01. JavaScript & Browser Foundations (Prerequisite Layer)
+
+- [ ] Closures, scope, hoisting, `this` binding — and how closures cause stale closures/memory leaks in hooks & Redux listeners
+- [ ] Prototypal inheritance, `Object.create`
+- [ ] Event loop: microtasks vs macrotasks; why React batching/state updates coordinate with the paint loop vs `setTimeout`/fetch macrotasks
+- [ ] Promises, async/await, generators (`function*`, `yield`, iterator `.next()` — foundation of Redux-Saga)
+- [ ] Debounce/throttle implementation from scratch
+- [ ] ES6+: destructuring, spread/rest, optional chaining, nullish coalescing, Map/Set, WeakMap/WeakRef
+- [ ] Immutability patterns, structural sharing, shallow vs deep equality
+- [ ] V8 engine internals: hidden classes & inline caches, garbage collection / GC thrashing, memory leak archetypes (detached DOM, uncleared listeners, stale closures, unbounded caches)
+- [ ] Browser rendering pipeline: parse → style → layout → paint → composite
+- [ ] Browser storage comparison: cookies, localStorage, sessionStorage, IndexedDB, Cache API
+- [ ] Web Components interop with React
+
+---
+
+## 02. React Core Fundamentals
+
+- [ ] JSX compilation (Babel → `React.createElement` → jsx-runtime)
+- [ ] Elements vs Components vs Instances
+- [ ] Functional vs Class components
+- [ ] Props, state, controlled vs uncontrolled components
+- [ ] Conditional/list rendering; `key` prop semantics (why index-as-key breaks reconciliation)
+- [ ] Fragments, Portals (DOM decoupling vs event bubbling preservation)
+- [ ] Synthetic Event System: root-container event delegation, historical pooling, perf vs native DOM events
+
+---
+
+## 03. Fiber Architecture, Reconciliation & Rendering Internals
+
+- [ ] Fiber nodes, work-in-progress tree, double buffering (current vs WIP tree)
+- [ ] Work loop: `beginWork` / `completeWork`, split/pause/resume
+- [ ] Reconciliation/diffing heuristics (O(n) vs theoretical O(n³))
+- [ ] Render phase (pure, interruptible) vs Commit phase (synchronous DOM mutation)
+- [ ] The Scheduler package: polyfilling `requestIdleCallback` via `MessageChannel`/`requestAnimationFrame`
+- [ ] Priority lanes / task prioritization (NoPriority, Immediate, UserBlocking, Normal, Idle), expiration & starvation prevention
+- [ ] Yielding to main thread (~5ms slicing) for responsiveness
+- [ ] Batching: legacy vs React 18 automatic batching
+- [ ] Concurrent rendering, interruptible rendering, time-slicing
+- [ ] `React.memo`, `PureComponent`, shallow comparison pitfalls
+- [ ] Bailing out of updates — exact conditions for early bailout
+- [ ] Suspense internals (throwing promises), Suspense boundaries & commit-phase interaction
+- [ ] Error boundaries — internals (`componentDidCatch`, `getDerivedStateFromError`)
+- [ ] Source-level `react-reconciler` understanding, lanes model (staff/principal level)
+
+---
+
+## 04. Hooks — Full Depth
+
+### Core
+
+- [ ] `useState` — batching, functional updates, lazy initialization
+- [ ] `useReducer` — reducer patterns, when to prefer over `useState`
+- [ ] `useEffect` — async-after-paint execution, cleanup, dependency-array pitfalls, stale closures
+- [ ] `useLayoutEffect` — sync pre-paint execution, layout measurement, flicker prevention
+- [ ] `useInsertionEffect` — pre-DOM-mutation timing (CSS-in-JS style injection)
+- [ ] `useMemo` / `useCallback` — genuine use cases vs premature optimization; no guaranteed cache retention
+- [ ] `useRef` — mutable refs, DOM refs, avoiding re-renders, closures over stale state
+- [ ] `useContext` — re-render cascade traps, selector/splitting mitigation
+- [ ] `useImperativeHandle` + `forwardRef` — exposing restricted imperative APIs
+- [ ] `useId` — stable, collision-free IDs consistent across SSR/hydration
+- [ ] `useSyncExternalStore` — solving "tearing" when reading external mutable stores (Redux/Zustand/history API)
+- [ ] `useTransition` / `useDeferredValue` — concurrent, non-blocking updates
+- [ ] `useOptimistic` (React 19) — optimistic UI with automatic rollback
+- [ ] `useActionState` (formerly `useFormState`) / `useFormStatus` — native async form state, pending/error tracking
+- [ ] Custom hooks — design, composition, race-condition handling in data-fetching hooks
+- [ ] Rules of Hooks — *why* they exist: hook linked-list architecture on the Fiber node (can't be in loops/conditionals)
+- [ ] Implementing a simplified `useState`/`useEffect` yourself (fiber-lite understanding)
+
+---
+
+## 05. Component Design Patterns & Composition
+
+- [ ] Higher-Order Components (HOCs) — limitations, why hooks largely replaced them
+- [ ] Render Props (legacy, still asked)
+- [ ] Compound Components — Context-driven communication (` `)
+- [ ] Container/Presentational pattern
+- [ ] Controlled vs Uncontrolled — dynamic transitions, complex validation
+- [ ] Custom hook composition patterns
+- [ ] Atomic design, feature-based folder structure
+- [ ] Polymorphic components (`as` prop pattern) — typing challenge
+
+---
+
+## 06. State Management
+
+### Local/Global Decision Making
+
+- [ ] Local vs lifted vs Context vs global — staff-level decision matrix
+- [ ] State colocation principles
+
+### Context API
+
+- [ ] Performance pitfalls, splitting contexts, selector patterns, memoized context value
+
+### Redux — Core
+
+- [ ] Three principles, unidirectional flow, `createStore`(legacy), `combineReducers`
+- [ ] Pure reducers, immutability without Immer (spread/`Object.assign`), normalization
+- [ ] Middleware signature `store => next => action`, custom middleware, execution order, enhancers vs middleware
+- [ ] `connect()` (legacy) vs hooks (`useSelector`, `useDispatch`, `useStore`) — re-render behavior, `shallowEqual`
+- [ ] Selectors & Reselect (`createSelector`), memoization internals, parametrized selectors
+
+### Redux Thunk
+
+- [ ] Function-as-action, `getState` access, chaining, error handling, cancellation limitations, testing thunks
+
+### Redux-Saga
+
+- [ ] Generator-driven middleware, declarative effects (plain objects, easy mocking)
+- [ ] Effects: `call`, `put`, `take`, `takeEvery`, `takeLatest`, `takeLeading`, `fork` vs `spawn` (attached vs detached), `cancel`/`cancelled`, `race`, `all`, `delay`
+- [ ] `actionChannel` (buffering), `eventChannel` (WebSockets/timers/geolocation bridge), custom `channel` (inter-saga comms)
+- [ ] Root saga composition, watcher/worker pattern, supervisor/global error-boundary patterns
+- [ ] Saga testing (step-through yielded-effect assertions)
+- [ ] Real-world: token auth flow (`take` pull-loop), parallel dashboard loads with error isolation, file-upload progress via `eventChannel`, search typeahead with `race` cancellation, WebSocket chat sync, polling engines, exponential-backoff retry engine, offline action queueing
+
+### Redux Toolkit (RTK)
+
+- [ ] `configureStore` internals (auto middleware, DevTools, serializability checks)
+- [ ] `createSlice`, Immer under the hood (Proxies enabling "mutating" syntax)
+- [ ] `prepare` callback for custom payloads
+- [ ] `createReducer` (builder vs map notation), `createAction`
+- [ ] `createAsyncThunk` lifecycle (pending/fulfilled/rejected), `extraReducers`, `unwrap()`, `rejectWithValue`, `condition`, AbortController cancellation
+- [ ] `createEntityAdapter` — normalized ID-to-record state, CRUD utilities, memoized selectors
+
+### RTK Query
+
+- [ ] `createApi`, `fetchBaseQuery`/custom baseQuery, query vs mutation endpoints, auto-generated hooks
+- [ ] Cache keys, cache lifetimes (`keepUnusedDataFor`), tag-based invalidation (`providesTags`/`invalidatesTags`)
+- [ ] Polling, refetch strategies, optimistic updates (`onQueryStarted` + manual rollback), prefetching (hover/focus/intent)
+- [ ] Streaming cache updates (`onCacheEntryAdded` — SSE/WebSockets), `injectEndpoints` code-splitting
+- [ ] RTK Query vs React Query/SWR — architectural differences
+
+### Other State Libraries
+
+- [ ] Zustand, Jotai, Recoil — atomic state models, transient updates
+- [ ] XState / Finite State Machines — when FSMs beat boolean flags; modeling multi-step wizards/checkout flows
+
+### Real-World Redux Use Cases (all levels)
+
+- [ ] Session mgmt & logout store reset, multi-step wizards, feature flags/theme sync
+- [ ] Normalized e-commerce dashboards, debounced search, optimistic "like" button
+- [ ] Real-time collaborative workspace (OT + WebSockets), infinite undo/redo history stack, cross-tab/window sync via BroadcastChannel
+- [ ] Micro-frontend state isolation, offline-first analytics sync engine with IndexedDB queue
+
+---
+
+## 07. Data Fetching & Server State
+
+- [ ] `fetch`/Axios patterns, race conditions, `AbortController` cancellation, idempotency
+- [ ] React Query / TanStack Query — caching, stale-while-revalidate, invalidation
+- [ ] SWR
+- [ ] Suspense-based data fetching; Render-as-You-Fetch vs Fetch-on-Render vs Fetch-then-Render (waterfalls)
+- [ ] Server state vs client state distinction
+- [ ] Optimistic updates & rollback strategies
+- [ ] HTTP caching (Cache-Control, ETag) vs client-side memory caching boundaries
+
+---
+
+## 08. Performance Optimization
+
+- [ ] Identifying unnecessary re-renders (React DevTools Profiler, flame graphs)
+- [ ] Memoization strategy — when it backfires (memory vs compute tradeoff)
+- [ ] Reference-equality pitfalls (inline objects/functions breaking memoization)
+- [ ] Splitting components / moving state down to limit re-render blast radius
+- [ ] Code splitting: `React.lazy`, dynamic `import()`, chunk-failure handling
+- [ ] Virtualization: `react-window`, `react-virtualized`, `@tanstack/virtual`; windowing trade-offs
+- [ ] Web Vitals in React context: LCP, INP (replaced FID), CLS, TTFB, FCP, TTI, TBT/long tasks (>50ms)
+- [ ] Bundle analysis & tree-shaking (`sideEffects` field, ESM imports, barrel-file risks)
+- [ ] Image/font loading strategies, lazy loading, SVGO
+- [ ] Avoiding prop drilling / render cascades
+- [ ] Concurrent features for perf: automatic batching, `useTransition`, `useDeferredValue`, Suspense coordination
+- [ ] Memory management: leak diagnosis, heap snapshots, unbounded cache growth (RTK Query/React Query `gcTime`)
+- [ ] CSS & layout performance: layout thrashing, CSS-in-JS runtime cost, `will-change`/GPU-accelerated props, CSS Containment (`contain: content`, `content-visibility: auto`)
+- [ ] Performance budgets in CI, alerting on Web Vitals regressions, correlating perf with business metrics
+- [ ] Prioritized scheduling via `scheduler.postTask()`; Web Workers for main-thread inversion
+- [ ] System-design style: diagnose a slow 10k-row table, cut a 5MB bundle, debug high INP, 15-widget dashboard without waterfalls
+
+---
+
+## 09. Streaming Data, Real-Time & Large File Handling (Advanced)
+
+- [ ] Real-time stream pipeline: incoming stream → worker/in-memory buffer → throttled batched dispatch → Fiber update
+- [ ] SSE vs WebSockets vs WebTransport (HTTP/3/QUIC) trade-offs
+- [ ] HTTP/2 & HTTP/3 multiplexing/prioritization
+- [ ] Never pushing high-frequency data directly into React/Redux state — buffer + rAF-timed batched dispatch (60/120fps)
+- [ ] Chunked/multipart file uploads (`File.slice()`), concurrent upload pool with concurrency limits, resumable uploads with client-side hashing (MD5/SHA-256) via Web Worker
+- [ ] `ReadableStream` API for large downloads; File System Access API for direct-to-disk streaming; Object URL memory-safe downloads (`createObjectURL`/`revokeObjectURL`)
+- [ ] Global `AbortController` cancel-all orchestration
+- [ ] CSS Houdini/Paint Worklets, OffscreenCanvas, Intersection/Resize Observer custom hooks
+- [ ] Mock system design: real-time collaborative financial dashboard, video-processing workspace with chunked upload + live WebSocket chart
+
+---
+
+## 10. Rendering Strategies: CSR / SSR / SSG / ISR / RSC
+
+- [ ] Rendering strategy comparison and TTFB/FCP/TTI impact per strategy; SEO implications
+- [ ] `renderToString`, `renderToStaticMarkup`, `renderToPipeableStream`/`renderToReadableStream` (streaming SSR)
+- [ ] Hydration mechanics — attaching listeners/reconciling to existing DOM (not re-rendering)
+- [ ] Hydration mismatches (browser-only APIs, `Date.now()`, `typeof window` conditionals), `suppressHydrationWarning`
+- [ ] Selective/partial hydration, progressive hydration, streaming out-of-order via Suspense
+- [ ] Resumability (Qwik) as a conceptual contrast to hydration
+- [ ] Data fetching for SSR: waterfalls, parallel fetch/preloading, dehydrate/hydrate caching pattern
+- [ ] React Server Components (RSC): server vs client component boundary (`"use client"`), what can/can't run where, serialization constraints, RSC payload wire format, bundle-size reduction, composition rules
+- [ ] Next.js as reference implementation: Pages Router (`getServerSideProps`/`getStaticProps`/`getStaticPaths`) vs App Router (Server Components by default, layouts, loading/error file conventions), ISR & on-demand revalidation, Middleware/edge runtime, Route handlers, Server Actions, Next.js caching layers (Data/Full Route/Router cache)
+- [ ] Other frameworks for contrast: Remix (loaders/actions), Gatsby (SSG+GraphQL), Astro (islands architecture)
+- [ ] SSR performance: avoiding blocking Node event loop, full-page/edge caching, component-level RSC caching, N+1 avoidance
+- [ ] State across server/client boundary: per-request store instantiation, `window.__PRELOADED_STATE__` pattern, avoiding cross-request contamination
+- [ ] Auth/cookies in SSR — reading session pre-render, avoiding auth flicker, CSRF w/ Server Actions
+- [ ] Error handling & timeouts in SSR context
+- [ ] SSR deployment: Node server vs serverless (cold starts), Edge SSR constraints, horizontal scaling costs
+- [ ] Debugging a production hydration mismatch — diagnosis walkthrough
+
+---
+
+## 11. Routing
+
+- [ ] React Router — nested routes, dynamic routing, v6.4+ data APIs (loaders/actions)
+- [ ] Route-based code splitting
+- [ ] Protected routes & auth flows
+- [ ] Deep linking & browser-history handling across composed apps
+
+---
+
+## 12. Forms
+
+- [ ] Controlled vs uncontrolled forms
+- [ ] Formik vs React Hook Form — why RHF avoids re-renders internally
+- [ ] Validation strategies: Yup, Zod
+- [ ] Complex dynamic forms
+- [ ] React 19 native form handling: `useActionState`, `useFormStatus`, Server Actions, automatic rollback on failure, request dedup
+
+---
+
+## 13. Testing
+
+- [ ] Jest fundamentals
+- [ ] React Testing Library philosophy — behavior over implementation
+- [ ] Mocking API calls & timers; Mocking Service Worker (MSW) for network-layer interception
+- [ ] Snapshot testing pros/cons
+- [ ] Cypress / Playwright for E2E
+- [ ] Testing hooks in isolation
+- [ ] Testing thunks (mock `dispatch`/`getState`, `redux-mock-store`)
+- [ ] Testing sagas step-by-step (`redux-saga-test-plan`)
+- [ ] Testing concurrent features — asserting mid-`useTransition` behavior, deterministic `act()` usage
+- [ ] Visual regression testing (Chromatic, Percy, Storybook)
+- [ ] Contract testing (micro-frontend shell ↔ remotes)
+- [ ] Automated a11y testing (axe-core, jest-axe)
+
+---
+
+## 14. TypeScript (General + React-Specific)
+
+### Foundations
+
+- [ ] Structural typing (duck typing), inference vs explicit annotation, `any` vs `unknown` vs `never` vs `void`
+- [ ] Type assertions (`as`) vs casting, `as const`
+- [ ] Arrays/tuples, interfaces vs type aliases, enums & pitfalls, literal types
+
+### Composition & Narrowing
+
+- [ ] Union/intersection types, discriminated unions + exhaustiveness (`never`) checks
+- [ ] Narrowing: `typeof`/`instanceof`/`in`, custom type guards (`is`), assertion functions (`asserts`)
+
+### Generics & Meta-Programming
+
+- [ ] Generic functions/classes/constraints (`extends`), default generic params, inference & variance
+- [ ] `keyof`, lookup types, mapped types (+key remapping via `as`)
+- [ ] Conditional types, `infer` keyword, distributive conditional types, recursive types
+- [ ] Utility types under the hood: `Pick`, `Omit`, `Partial`, `Required`, `Record`, `Extract`, `Exclude`, `ReturnType`, `Parameters`, `InstanceType`, `Awaited`, `NonNullable`
+- [ ] Template literal types (type-safe routes/CSS/event names)
+
+### OOP, Modules, Declarations
+
+- [ ] Access modifiers, parameter properties, abstract classes, `override`, static blocks
+- [ ] `import type`/`export type`, namespaces vs modules, declaration merging, ambient modules/`.d.ts`, module augmentation
+- [ ] `tsconfig.json` deep dive: `strict`, `noImplicitAny`, `strictNullChecks`, `strictFunctionTypes`, `noUncheckedIndexedAccess`, module resolution, path mapping, project references/composite builds
+
+### Null Safety & Error Patterns
+
+- [ ] `strictNullChecks`, `?.`/`??`, non-null assertion (`!`), definite assignment (`!:`)
+- [ ] Result/Either pattern, exhaustiveness with `switch`+`never`, discriminated-union API response modeling
+
+### Interop & Runtime Safety
+
+- [ ] Typing untyped libs, `allowJs`/`checkJs`, runtime validation (Zod/io-ts) vs compile-time types
+
+### TypeScript + React
+
+- [ ] Typing props/state/refs/events (`React.MouseEvent ` etc.)
+- [ ] `React.FC` debate, `ComponentProps`/`ComponentPropsWithoutRef`/`PropsWithChildren`
+- [ ] Typing hooks: `useState `, `useRef `, `useReducer` with discriminated action unions
+- [ ] Generic components (` () =>` gotcha in `.tsx`), typing HOCs/render props generically
+- [ ] Typing context (`createContext ` pattern)
+- [ ] Polymorphic components (`as` prop) typing
+
+### Branded/Nominal Typing & Security
+
+- [ ] Branded/opaque types simulating nominal typing (e.g., `UserId`, `SanitizedHTML`)
+- [ ] `unique symbol`
+
+### Compiler Internals (staff/principal)
+
+- [ ] Structural assignability checking, AST representation, type widening/narrowing internals, declaration emit, deferred vs immediate conditional-type evaluation, compile-time performance pitfalls of deep generic chains
+
+### System-Design-Style TS
+
+- [ ] Type-safe REST client, type-safe form validation library, type-safe router (inferred path params), plugin system with type-safe extensibility, `DeepPartial `/`DeepReadonly `, Object-Path-Getter via template literals, dynamic Redux slice action typings, type-safe i18n translation function
+
+---
+
+## 15. Security
+
+- [ ] XSS: stored/reflected/DOM-based; React's built-in JSX escaping and its exact bypass vectors (`javascript:` URLs)
+- [ ] `dangerouslySetInnerHTML` — ESLint blocking + DOMPurify sanitization; SVG-based XSS vectors
+- [ ] Content Security Policy: eliminating `unsafe-inline`, nonces/hashes, Trusted Types API, report-only rollout mode
+- [ ] CSRF: tokens (double-submit, synchronizer), `SameSite` cookies, Server Actions built-in protections
+- [ ] Token storage matrix: localStorage/sessionStorage vs cookies, `HttpOnly`/`Secure`/`SameSite` flags
+- [ ] Backend-for-Frontend (BFF) pattern — moving token/cookie handling off the client entirely
+- [ ] OAuth 2.1 + PKCE for SPAs (why implicit flow is deprecated)
+- [ ] Session teardown & cross-tab sync (BroadcastChannel/storage events) on logout
+- [ ] Authorization: client-side gating is UX only; real enforcement is server-side; role-based UI vs actual permission enforcement
+- [ ] TypeScript compile-time security: branded/tainted-string types, exhaustive `never` checks for new roles/flags, strict serialization (Zod/TypeBox) stripping unexpected API properties
+- [ ] State/memory security: prototype-pollution prevention in deep-merges, nullifying sensitive closures, malicious Redux DevTools/extension action injection
+- [ ] Supply chain: SBOM, dependency poisoning/typosquatting, lockfile integrity, `npm audit`/Snyk/Dependabot
+- [ ] Subresource Integrity (SRI) for third-party scripts/fonts
+- [ ] Clickjacking defenses: `X-Frame-Options`, `frame-ancestors`
+- [ ] Other security headers: `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, HSTS
+- [ ] CORS from the frontend-consumer perspective (credentials mode, allowed origins)
+- [ ] Third-party scripts/iframes: `sandbox` attribute, `postMessage` origin validation
+- [ ] Input validation: client-side as UX-only, schema validation at boundaries (Zod/Yup)
+- [ ] Security testing: SAST in CI, pen-testing mindset, OWASP Top 10 mapping to frontend
+- [ ] Elite scenario: zero-data-exfiltration architecture for a regulated medical dashboard (Trusted Types + DOMPurify + BFF + strict CSP)
+
+---
+
+## 16. Build Tools, Bundling & Compilation
+
+- [ ] Dev vs prod builds (minification, dead-code elimination, `NODE_ENV`)
+- [ ] CRA (and its deprecation) vs Vite vs Next.js build pipeline
+- [ ] Source maps: generation, private upload to Sentry/Bugsnag, production exclusion for security
+- [ ] Tree-shaking mechanics, `sideEffects` field, barrel-file risks
+- [ ] Code-splitting at build time (route/component-based)
+- [ ] Bundle analysis (`webpack-bundle-analyzer`, `vite-bundle-visualizer`, `source-map-explorer`)
+- [ ] Asset optimization: image compression, font subsetting, SVG optimization
+- [ ] Output hashing/fingerprinting (`[contenthash]`) for cache busting
+- [ ] Differential loading (modern ESM vs legacy `nomodule` fallback bundles)
+- [ ] Babel JSX transforms, ESLint/Prettier + `eslint-plugin-react-hooks`
+- [ ] The React Compiler ("React Forget") — automatic memoization, obsoleting manual `useMemo`/`useCallback`
+- [ ] `"use client"` / `"use server"` directive boundary handling
+- [ ] Document metadata/asset loading (React 19 native ` `/` `/` ` hoisting, `preload`/`preinit`)
+
+---
+
+## 17. Environment Configuration
+
+- [ ] `.env`/`.env.local`/`.env.production` precedence
+- [ ] Build-time vs runtime env vars — critical distinction; `REACT_APP_`/`VITE_` prefix security rationale
+- [ ] Runtime config injection patterns (`window.__env__`, config fetched at boot) for one-build-many-environments
+- [ ] Secrets management — never ship secrets to the client
+- [ ] Multi-environment strategy (dev/staging/QA/UAT/prod)
+- [ ] Feature flags: LaunchDarkly/Unleash/homemade; build-time vs runtime flags
+- [ ] Config validation/fail-fast at startup
+
+---
+
+## 18. Deployment & Hosting Infrastructure
+
+- [ ] Static hosting/Jamstack (S3/Cloudflare Pages/Vercel/Netlify/GitHub Pages/Firebase/Azure SWA)
+- [ ] SPA routing on static hosts — 404-fallback-to-index.html / CDN rewrite rules
+- [ ] Cache-Control strategy: immutable fingerprinted assets vs `no-cache` entry HTML
+- [ ] Atomic deployments & origin pinning (avoiding stale-chunk mismatches during release)
+- [ ] Edge Computing/ESR (Cloudflare Workers, Vercel Edge, CloudFront Functions) — constraints, use cases
+- [ ] Containerization: multi-stage Docker builds, Nginx/Caddy SPA-fallback + gzip/brotli config, Docker Compose, container registries
+- [ ] Orchestration: Kubernetes basics, ECS/Fargate, AWS/Azure/GCP hosting options, load balancing & auto-scaling for SSR
+- [ ] CI/CD pipeline stages (lint → typecheck → test → security scan → build → deploy), GitHub Actions/GitLab CI/Jenkins/CircleCI
+- [ ] Dependency caching in CI, PR preview deployments, semantic-release/automated versioning
+- [ ] Deployment gates/manual approval, rollback strategy (N previous builds, one-click revert)
+- [ ] Deployment strategies: blue-green, canary (weighted DNS/Route 53), rolling, feature-flag-gated releases
+- [ ] SSR/SSG deployment specifics: `next export` static export, Vercel serverless-per-route model, ISR revalidation, edge vs serverless cold starts
+- [ ] Production observability: RUM/Web Vitals, Sentry/Bugsnag + source-map upload, APM (Datadog/New Relic), structured SSR logging (ELK/CloudWatch), synthetic uptime checks, alerting
+- [ ] Security in deployment: CSP/HSTS/`X-Frame-Options` headers, dependency & secrets scanning in CI, CORS config, SRI
+- [ ] Versioning & release management: semver, GitFlow/trunk-based dev, release-note automation, frontend/backend API compatibility
+- [ ] Multi-tenant/multi-region: latency-driven multi-region deploys, white-labeling/per-tenant config, i18n build strategy (runtime switch vs per-locale builds)
+- [ ] Local dev/prod parity: Docker Compose mirroring, `.nvmrc`, lockfile discipline (`npm ci`)
+- [ ] Package manager strategy: npm vs Yarn vs pnpm (strict/symlinked `node_modules`), private registries, peer-dependency conflicts
+
+---
+
+## 19. Monorepo Architecture
+
+- [ ] Monorepo vs polyrepo trade-offs; when justified vs overengineering
+- [ ] Workspace support: npm/Yarn(Classic & Berry/PnP)/pnpm workspaces, hoisting & phantom-dependency risk, `workspace:*` protocol
+- [ ] Tooling: Nx (project graph, computation caching, `nx affected`, generators/executors), Turborepo (pipeline config, remote caching), Lerna, Rush, Bazel (conceptual) — comparison
+- [ ] Build graph & task orchestration, affected/changed detection, parallelization
+- [ ] Caching: local vs remote/distributed (Nx Cloud, Turborepo Remote Cache), cache-key inputs, invalidation correctness
+- [ ] Code sharing: shared `ui`/`utils`/`config`/`types` packages, barrel-file trade-offs, internal versioning (always-latest vs independent), public API boundary discipline
+- [ ] Dependency management: single-version policy vs drift, circular-dependency prevention, module-boundary lint rules
+- [ ] Testing: affected-only test runs, cross-package integration, shared test config, multi-app E2E
+- [ ] CI/CD: affected-based pipelines, independent per-app deploys, matrix builds, Changesets for versioning/changelogs
+- [ ] Ownership/governance: CODEOWNERS, architectural-boundary enforcement, multi-team scaling
+- [ ] Micro-frontends inside a monorepo: Module Federation + Nx/Turborepo patterns, shared design-system consumption, build isolation
+- [ ] TypeScript in monorepos: project references/composite builds, path aliases, type-check performance at scale
+- [ ] Migration: merging polyrepos (git subtree/filter-repo), incrementally adopting Nx/Turborepo, splitting an over-large package
+- [ ] Common pitfalls: phantom dependencies, over/under-granular packages, stale-cache-induced false-green CI
+- [ ] System design: 3-app monorepo (web/admin/mobile-web) w/ shared component lib, affected-only CI for 10-app repo w/ remote caching, module-boundary rules (checkout vs admin), org-wide monorepo vs domain-split vs polyrepo trade-off (200-engineer org)
+
+---
+
+## 20. Micro-Frontend Architecture
+
+- [ ] Motivation: independent deployability, team autonomy, tech-stack independence, Conway's Law; honest cost trade-offs vs a well-structured monorepo SPA
+- [ ] Decomposition: vertical (domain) vs horizontal (page-region) split, DDD bounded contexts, single-spa "applications" vs "parcels"
+- [ ] Integration approaches: build-time (npm packages) vs runtime-JS (Module Federation/SystemJS) vs iframes (isolation, why largely avoided) vs server-side/Edge-Side Includes composition
+- [ ] Webpack Module Federation: host/remote, `exposes`/`remotes`, singleton shared deps (React/ReactDOM), version-mismatch handling (`strictVersion`), dynamic remote resolution at runtime, bidirectional host+remote apps; Vite federation-plugin differences
+- [ ] Orchestration frameworks: single-spa lifecycle (bootstrap/mount/unmount), qiankun sandboxing, Piral pilet architecture, hand-rolled shells
+- [ ] Routing: shell-owned top-level routing + delegated sub-routes, route-based lazy loading, shared-router vs independent-router+URL-sync, cross-app deep linking, multi-app browser-history handling
+- [ ] Inter-app communication: CustomEvents/pub-sub bus, shared injected store (coupling trade-off), URL/query-param state, props from shell, avoiding tight coupling
+- [ ] Styling isolation: CSS collision problems, CSS Modules/CSS-in-JS scoping, Shadow DOM, shared design tokens, namespacing conventions
+- [ ] Shared dependencies/versioning: avoiding duplicate framework copies, singleton strategies/import maps, independent vs enforced-shared versions, design-system distribution & breaking-change handling
+- [ ] Cross-boundary state: why global Redux is tricky across independently-deployed apps, per-app vs shared/cross-cutting state (auth/session/theme/notifications), avoiding a shared store as a hidden coupling point
+- [ ] Team/ownership: one team per MFE end-to-end, independent CI/CD, versioned shell↔remote contracts, shared design-system governance
+- [ ] Independent deployability: single-MFE deploy w/o redeploying shell/siblings, dynamic remote-entry resolution, versioned/pinned vs always-latest remotes, feature-flag-gated MFE visibility
+- [ ] Testing: isolated unit/integration, contract testing (shell↔remote), composed-system E2E, standalone/"parcel" mode
+- [ ] Performance: bundle-duplication risk, lazy-loading remotes by route, network-waterfall risk (manifest→chunks), remote-entry caching, holistic Web Vitals across a multi-team composed app
+- [ ] Security: trust boundary (remote MFE has full host-page access unlike iframes), CSP across dynamically-loaded cross-origin remotes, sanitizing inter-MFE data, SSO/token propagation
+- [ ] SSR with MFEs: composing server-rendered fragments from multiple services, ESI/fragment caching, Next.js + Module Federation immaturity/trade-offs, cross-pipeline hydration challenges
+- [ ] MFE circuit breakers: detecting remote timeout/script-load failure, auto-unmount + local fallback; Service-Worker interception serving cached stable versions during deploy failures
+- [ ] Common pitfalls: "distributed monolith" anti-pattern, shared-library bottlenecks, inconsistent UX without design-system discipline, over-fragmentation, version drift
+- [ ] System design: e-commerce MFE split (search/product/cart/checkout/account), shell responsibility boundary (auth/nav/theming/error boundaries), rollback strategy for a remote breaking prod, cross-MFE checkout communication (cart team A ↔ payment team B), Module Federation vs iframes vs server-side composition trade-off
+
+---
+
+## 21. Accessibility (a11y)
+
+- [ ] Semantic HTML in JSX, ARIA roles, focus management, keyboard navigation
+- [ ] WCAG conformance levels (A/AA/AAA) — org-wide enforcement expectations
+- [ ] Baking a11y into the design system so teams get it "for free"
+- [ ] Automated testing (axe-core/jest-axe) vs manual/screen-reader testing
+- [ ] Complex widget patterns: focus trapping (modals), ARIA live regions, accessible comboboxes/data tables
+
+---
+
+## 22. Architecture, System Design & Org-Level Concerns
+
+### API Layer
+
+- [ ] REST vs GraphQL vs tRPC trade-offs; Apollo Client/Relay normalized cache & fragment colocation
+- [ ] Backend-for-Frontend (BFF) pattern rationale
+- [ ] API versioning, contract-first design (OpenAPI/GraphQL schema), schema stitching/federation, N+1/DataLoader pattern
+
+### Design Systems
+
+- [ ] Design tokens (color/spacing/typography), Storybook, headless (Radix/React Aria) vs fully-styled (MUI/Chakra)
+- [ ] Versioning/distributing across teams, governance/contribution model, visual regression testing (Chromatic/Percy)
+
+### i18n & l10n
+
+- [ ] react-intl/i18next architecture, runtime vs per-locale builds, RTL/logical CSS properties, `Intl` pluralization/date/number formatting, translation-management workflows, locale-file bundle-size impact
+
+### PWA & Offline-First
+
+- [ ] Service workers, caching strategies (cache-first/network-first/SWR), Workbox, offline sync/background sync, IndexedDB persistence, manifest/installability, when it's actually worth it
+
+### Native/Cross-Platform
+
+- [ ] React Native code-sharing strategy, Expo vs bare workflow, when to extend web architecture to mobile
+
+### Resilience & Observability
+
+- [ ] Error-boundary placement strategy, graceful degradation, circuit-breaker pattern, exponential-backoff retries
+- [ ] Structured logging correlated with backend trace IDs, distributed tracing (OpenTelemetry), dashboards tying errors/perf to business KPIs, alerting/on-call runbooks
+
+### Governance & Decision-Making
+
+- [ ] Architecture Decision Records (ADRs), tech-evaluation POC→pilot→rollout process, technical RFCs
+- [ ] Tech-debt vs feature-velocity prioritization/justification to leadership
+- [ ] Org-wide standards/linting/architecture rule enforcement
+
+### Legacy Migration
+
+- [ ] Strangler Fig pattern, running two frameworks side-by-side (MFE/iframe bridge), class→hooks codemods at scale, state-management migration strategies
+
+### Cost & Team
+
+- [ ] CDN/bandwidth cost of bundle size, serverless/edge cost models vs always-on, CI infra cost vs cache strategy, justifying spend to non-technical stakeholders
+- [ ] Mentoring/code-review philosophy, autonomy vs consistency tension, onboarding into complex codebases, cross-functional collaboration, communicating technical risk
+
+### Forward-Looking
+
+- [ ] React Compiler implications, Signals-based reactivity (Preact Signals/Solid) vs React's re-render model, Server Actions maturity, View Transitions API, WebAssembly's realistic fit in a React app
+
+---
+
+## 23. Compiled "Elite" System-Design & Mock-Scenario Prompts
+
+- [ ] Real-Time Collaborative Financial Dashboard (WebSockets + `useTransition` + `createEntityAdapter` + optimistic comments)
+- [ ] Enterprise Micro-Frontend Shell with dynamically-registered isolated state slices
+- [ ] Offline-First Analytics Sync Engine (IndexedDB queue + Thunk drain on reconnect)
+- [ ] Browser-based Video Processing Workspace (chunked 4GB upload w/ pause/resume + live WebSocket analytics, 60fps)
+- [ ] Regulated Medical Dashboard requiring zero data exfiltration under active XSS attack
+- [ ] Atomic Zero-Downtime Global Deployment Pipeline (40 countries, edge-localized routing)
+- [ ] Design an SSR architecture for an SEO+personalization product page
+- [ ] Design a data table with sorting/filtering/pagination/virtualization
+- [ ] Design an infinite-scroll feed and a real-time notification system
+- [ ] Trade-off drills: CSR vs SSR vs SSG vs ISR; Thunk vs Saga vs RTK Query for cancel-on-keystroke search; Module Federation vs iframes vs server-side composition; single monorepo vs domain-split vs polyrepo for a 200-engineer org
+
+---
+
+## Progress checklist
+
+- [ ] Complete all 23 sections
+- [ ] Practice coding and implementation questions
+- [ ] Complete at least 3 full mock interviews
+- [ ] Prepare architecture stories from real projects
+
+*Converted from the supplied HTML roadmap. The original 23 sections and 308 topics are preserved; interactive browser features such as search, theme switching, and saved progress are replaced with standard Markdown checkboxes and links.*
